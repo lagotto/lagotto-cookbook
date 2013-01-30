@@ -1,18 +1,10 @@
-require_recipe "apt"
-require_recipe "build-essential"
-require_recipe "git"
-
-# Install rvm and Ruby 1.9.3. Add Chef Solo path
-require_recipe "rvm::system"
-require_recipe "rvm::vagrant"
-
 require 'securerandom'
 require 'yaml'
 
 ::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
 
 # Generate new password for MySQL root unless it has already been stored in database.yml 
-# This has to go before the require_recipe for mysql::server
+# This has to go before the include_recipe for mysql::server
 if File.exists? "/vagrant/config/database.yml"
   stored_password = YAML.load_file("/vagrant/config/database.yml")["test"]["password"]
   node.set['mysql']['server_root_password'] = stored_password
@@ -27,10 +19,9 @@ else
   end
 end
 
-require_recipe "mysql::server"
+include_recipe "mysql::server"
 
-# Install CouchDB and create default CouchDB database
-require_recipe "couchdb"
+# Create default CouchDB database
 execute "create CouchDB database #{node[:couchdb][:database]}" do
   command "curl -X DELETE http://#{node[:couchdb][:host]}:#{node[:couchdb][:port]}/#{node[:couchdb][:database]}/"
   command "curl -X PUT http://#{node[:couchdb][:host]}:#{node[:couchdb][:port]}/#{node[:couchdb][:database]}/"
@@ -53,9 +44,6 @@ else
     mode 0644
   end
 end
-
-# Install PhantomJS for Javascript acceptance tests
-require_recipe "phantomjs"
 
 # Run bundle command
 bash "run bundle install in app directory" do
@@ -84,9 +72,6 @@ template "/vagrant/Procfile" do
   group 'root'
   mode 0644
 end
-
-# Install Apache and Passenger
-require_recipe "passenger_apache2::mod_rails"
 
 execute "disable-default-site" do
   command "sudo a2dissite default"

@@ -1,0 +1,13 @@
+{
+  "name": "alm",
+  "description": "Configures ALM server",
+  "maintainer": "Martin Fenner",
+  "maintainer_email": "mfenner@plos.org",
+  "license": "Apache 2.0",
+  "platforms": {
+    "ubuntu": ">= 0.0.0"
+  },
+  "dependencies": {
+  },
+  "version": "1.0.0"
+}

@@ -1,25 +1,12 @@
 require 'securerandom'
-require 'yaml'
 
-::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
-
-# Generate new password for MySQL root unless it has already been stored in database.yml 
-# This has to go before the require_recipe for mysql::server
-if File.exists? "/vagrant/config/database.yml"
-  stored_password = YAML.load_file("/vagrant/config/database.yml")["test"]["password"]
-  node.set['mysql']['server_root_password'] = stored_password
-else
-  # create new database.yml
-  node.set['mysql']['server_root_password'] = secure_password 
-  template "/vagrant/config/database.yml" do
-    source 'database.yml.erb'
-    owner 'root'
-    group 'root'
-    mode 0644
-  end
+# create new database.yml
+template "/vagrant/config/database.yml" do
+  source 'database.yml.erb'
+  owner 'root'
+  group 'root'
+  mode 0644
 end
-
-require_recipe "mysql::server"
 
 # Create default CouchDB database
 execute "create CouchDB database #{node[:couchdb][:database]}" do

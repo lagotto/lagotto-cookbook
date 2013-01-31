@@ -8,6 +8,11 @@ template "/vagrant/config/database.yml" do
   mode 0644
 end
 
+# Load information about the rbenv ruby we just installed
+ohai "reload" do
+  action :reload
+end
+
 # Create new settings.yml
 node.set_unless['app']['key'] = SecureRandom.hex(30)
 node.set_unless['app']['secret'] = SecureRandom.hex(30)
@@ -33,15 +38,18 @@ template "/vagrant/db/seeds/sources.seeds.erb" do
   mode 0644
 end
 
-# Create default databases and run migrations
-bash "bundle exec rake db:setup RAILS_ENV=#{node[:rails][:environment]}" do
+# Run bundle command
+script "bundle" do
+  interpreter "bash"
   cwd "/vagrant"
-  code "bundle exec rake db:setup RAILS_ENV=#{node[:rails][:environment]}"
+  code "bundle install"
 end
 
-# Run bundle command
-bash "bundle" do
-  code "cd /vagrant && bundle install"
+# Create default databases and run migrations
+script "bundle rake db:setup RAILS_ENV=#{node[:rails][:environment]}" do
+  interpreter "bash"
+  cwd "/vagrant"
+  code "bundle exec rake db:setup RAILS_ENV=#{node[:rails][:environment]}"
 end
 
 # Generate new Procfile

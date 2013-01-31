@@ -12,6 +12,8 @@
     "apt": ">= 0.0.0",
     "build-essential": ">= 0.0.0",
     "git": ">= 0.0.0",
+    "ruby_build": ">= 0.0.0",
+    "rbenv": ">= 0.0.0",
     "passenger_apache2": ">= 0.0.0",
     "mysql": ">= 0.0.0",
     "couchdb": ">= 0.0.0",

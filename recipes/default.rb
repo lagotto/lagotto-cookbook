@@ -34,9 +34,9 @@ template "/vagrant/db/seeds/sources.seeds.erb" do
 end
 
 # Create default databases and run migrations
-bash "rake db:setup RAILS_ENV=#{node[:rails][:environment]}" do
+bash "bundle exec rake db:setup RAILS_ENV=#{node[:rails][:environment]}" do
   cwd "/vagrant"
-  code "rake db:setup RAILS_ENV=#{node[:rails][:environment]}"
+  code "bundle exec rake db:setup RAILS_ENV=#{node[:rails][:environment]}"
 end
 
 # Run bundle command

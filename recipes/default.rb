@@ -60,9 +60,14 @@ template "/vagrant/Procfile" do
   mode 0644
 end
 
-execute "disable-default-site" do
-  command "sudo a2dissite default"
-  notifies :reload, resources(:service => "apache2"), :delayed
+
+case node[:platform]
+#when "centos","redhat","fedora","suse"
+when "debian","ubuntu"
+  execute "disable-default-site" do
+    command "sudo a2dissite default"
+    notifies :reload, resources(:service => "apache2"), :delayed
+  end
 end
 
 web_app "alm" do

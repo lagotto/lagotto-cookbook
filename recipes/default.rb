@@ -1,14 +1,21 @@
-require 'securerandom'
+if node['platform'] == "ubuntu"
+  # Install required packages
+  %w{ruby1.9.3 libxslt-dev libxml2-dev ruby-bundler curl}.each do |pkg|
+    package pkg do
+      action :install
+    end
+  end
+end
 
-# Create new database.yml
-template "/vagrant/config/database.yml" do
-  source 'database.yml.erb'
-  owner 'root'
-  group 'root'
-  mode 0644
+# Install required gems via bundler
+script "bundle" do
+  interpreter "bash"
+  cwd "/vagrant"
+  code "bundle install"
 end
 
 # Create new settings.yml
+require 'securerandom'
 node.set_unless['app']['key'] = SecureRandom.hex(30)
 node.set_unless['app']['secret'] = SecureRandom.hex(30)
 template "/vagrant/config/settings.yml" do
@@ -18,27 +25,12 @@ template "/vagrant/config/settings.yml" do
   mode 0644
 end
 
-# install CouchDB if we didn't include the cookbook
-unless node['couch_db']['install_erlang']
-  package "couchdb" do
-    action :install
-  end
-  
-  service "couchdb" do
-    if platform_family?("rhel","fedora")
-      start_command "/sbin/service couchdb start &> /dev/null"
-      stop_command "/sbin/service couchdb stop &> /dev/null"
-    end
-    supports [ :restart, :status ]
-    action [ :enable, :start ]
-  end
-end
-
-# Create default CouchDB database
-execute "create CouchDB database #{node[:couchdb][:database]}" do
-  command "curl -X DELETE http://#{node[:couchdb][:host]}:#{node[:couchdb][:port]}/#{node[:couchdb][:database]}/"
-  command "curl -X PUT http://#{node[:couchdb][:host]}:#{node[:couchdb][:port]}/#{node[:couchdb][:database]}/"
-  ignore_failure true
+# Create new database.yml
+template "/vagrant/config/database.yml" do
+  source 'database.yml.erb'
+  owner 'root'
+  group 'root'
+  mode 0644
 end
 
 # Optionally seed the database with sources, groups and sample articles
@@ -49,26 +41,19 @@ template "/vagrant/db/seeds/sources.seeds.erb" do
   mode 0644
 end
 
-# Help installing mysql gem on CentOS
-if platform_family?("rhel","fedora")
-  gem_package "mysql2" do
-    action :install
-    options "--with-mysql-conf=/usr/bin/mysql --with-mysql-lib=/usr/lib/mysql"
-  end
-end
-
-# Run bundle command
-script "bundle" do
-  interpreter "bash"
-  cwd "/vagrant"
-  code "bundle install"
-end
-
 # Create default databases and run migrations
 script "rake db:setup RAILS_ENV=#{node[:rails][:environment]}" do
   interpreter "bash"
   cwd "/vagrant"
   code "rake db:setup RAILS_ENV=#{node[:rails][:environment]}"
+end
+
+# Create default CouchDB database
+script "create CouchDB database #{node[:couchdb][:database]}" do
+  interpreter "bash"
+  code "curl -X DELETE http://#{node[:couchdb][:host]}:#{node[:couchdb][:port]}/#{node[:couchdb][:database]}/"
+  code "curl -X PUT http://#{node[:couchdb][:host]}:#{node[:couchdb][:port]}/#{node[:couchdb][:database]}/"
+  ignore_failure true
 end
 
 # Generate new Procfile
@@ -79,10 +64,10 @@ template "/vagrant/Procfile" do
   mode 0644
 end
 
-
 case node[:platform]
-#when "centos","redhat","fedora","suse"
 when "debian","ubuntu"
+  include_recipe "passenger_apache2::mod_rails"
+  
   execute "disable-default-site" do
     command "sudo a2dissite default"
     notifies :reload, resources(:service => "apache2"), :delayed

@@ -15,6 +15,6 @@ depends           "mysql"
 depends           "couchdb"
 depends           "phantomjs"
 
-%w{ ubuntu centos }.each do |os|
-  supports os
+%w{ ubuntu centos }.each do |platform|
+  supports platform
 end

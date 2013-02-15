@@ -49,6 +49,14 @@ template "/vagrant/db/seeds/sources.seeds.erb" do
   mode 0644
 end
 
+# Help installing mysql gem on CentOS
+if platform_family?("rhel","fedora")
+  gem_package "mysql2" do
+    action :install
+    options "--with-mysql-conf=/usr/bin/mysql --with-mysql-lib=/usr/lib/mysql"
+  end
+end
+
 # Run bundle command
 script "bundle" do
   interpreter "bash"

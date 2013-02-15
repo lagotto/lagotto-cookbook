@@ -1,3 +1,4 @@
+name              "alm"
 maintainer        "Martin Fenner"
 maintainer_email  "mfenner@plos.org"
 license           "Apache 2.0"

@@ -46,10 +46,10 @@ script "bundle" do
 end
 
 # Create default databases and run migrations
-script "bundle rake db:setup RAILS_ENV=#{node[:rails][:environment]}" do
+script "rake db:setup RAILS_ENV=#{node[:rails][:environment]}" do
   interpreter "bash"
   cwd "/vagrant"
-  code "bundle exec rake db:setup RAILS_ENV=#{node[:rails][:environment]}"
+  code "rake db:setup RAILS_ENV=#{node[:rails][:environment]}"
 end
 
 # Generate new Procfile

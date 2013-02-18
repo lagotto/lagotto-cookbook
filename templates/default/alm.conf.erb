@@ -5,7 +5,7 @@
     DocumentRoot /vagrant/public
 	  RailsEnv <%= node[:alm][:environment] %>
     ServerName <%= node[:alm][:host] %>
-    ServerAdmin <%= node[:alm][:email] %>
+    ServerAdmin <%= node[:alm][:admin][:email] %>
 
     <Directory />
       Options FollowSymLinks

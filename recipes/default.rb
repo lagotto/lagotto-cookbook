@@ -36,9 +36,9 @@ template "/vagrant/config/database.yml" do
   mode 0644
 end
 
-# Optionally seed the database with sources, groups and sample articles
-template "/vagrant/db/seeds/sources.seeds.erb" do
-  source 'sources.seeds.erb'
+# Seed the database with sources, groups and sample articles
+template "/vagrant/db/seeds.rb" do
+  source 'seeds.rb.erb'
   owner 'root'
   group 'root'
   mode 0644
@@ -49,6 +49,13 @@ script "rake db:setup RAILS_ENV=#{node[:alm][:environment]}" do
   interpreter "bash"
   cwd "/vagrant"
   code "rake db:setup RAILS_ENV=#{node[:alm][:environment]}"
+end
+
+# Create test databases
+script "rake db:test:prepare" do
+  interpreter "bash"
+  cwd "/vagrant"
+  code "rake db:test:prepare"
 end
 
 # Create default CouchDB database
@@ -87,12 +94,20 @@ when "centos"
     mode 0644
   end
   
+  # Allow all traffic on the loopback device
+  simple_iptables_rule "system" do
+    rule "--in-interface lo"
+    jump "ACCEPT"
+  end
+  
+  # Allow HTTP
+  simple_iptables_rule "http" do
+    rule "--proto tcp --dport 80"
+    jump "ACCEPT"
+  end
+  
   script "start httpd" do
     interpreter "bash"
-    code "sudo iptables -I INPUT -p tcp --dport 80 -j ACCEPT"
-    code "sudo service iptables save"
-    code "sudo /etc/init.d/iptables restart"
-    code "sudo chkconfig --levels 235 httpd on"
     code "sudo /sbin/service httpd start"
   end
 end

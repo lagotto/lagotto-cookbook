@@ -48,6 +48,9 @@ end
 script "rake db:setup RAILS_ENV=#{node[:alm][:environment]}" do
   interpreter "bash"
   cwd "/vagrant"
+  if node[:alm][:environment] == "production"
+    code "rake db:setup RAILS_ENV=development" 
+  end
   code "rake db:setup RAILS_ENV=#{node[:alm][:environment]}"
 end
 

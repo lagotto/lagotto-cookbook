@@ -45,18 +45,10 @@ template "/vagrant/db/seeds.rb" do
 end
 
 # Create default databases and run migrations
-script "rake db:setup" do
+script "RAILS_ENV=#{node[:alm][:environment]} rake db:setup" do
   interpreter "bash"
   cwd "/vagrant"
-  code "RAILS_ENV=development rake db:create db:schema:load"
   code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup"
-end
-
-# Create test databases
-script "rake db:test:prepare" do
-  interpreter "bash"
-  cwd "/vagrant"
-  code "rake db:test:prepare"
 end
 
 # Create default CouchDB database

@@ -54,6 +54,7 @@ wos = Wos.find_or_create_by_name(
 	:display_name => "Web of Science", 
   :description => "Web of Science is an online academic citation index.",
 	:active => <%= node[:alm][:wos][:url] == "EXAMPLE" ? false : true %>, 
+  :private => 1,
 	:workers => 1,
 	:group_id => citations.id,
 	:url => "<%= node[:alm][:wos][:url] %>" )

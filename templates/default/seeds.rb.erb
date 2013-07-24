@@ -13,7 +13,8 @@ social_networks = Group.find_or_create_by_name(:name => "Social Networks")
 blogs_media = Group.find_or_create_by_name(:name => "Blogs and Media Coverage")
 
 # Load default reports
-new_users = Report.find_or_create_by_name(:name => "New Users")
+new_user = NewUserReport.find_or_create_by_name(:name => "new_user", :display_name => "New User")
+disabled_source = DisabledSourceReport.find_or_create_by_name(:name => "disabled_source", :display_name => "Source disabled")
 
 # Load default sources
 citeulike = Citeulike.find_or_create_by_name(  

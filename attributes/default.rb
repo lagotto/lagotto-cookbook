@@ -8,6 +8,7 @@ default[:alm][:uid] = "doi"
 default[:alm][:doi_prefix] = ""
 default[:alm][:key] = nil
 default[:alm][:secret] = nil
+default[:alm][:cas_url] = nil
 default[:alm][:github_client_id] = nil
 default[:alm][:github_client_secret] = nil
 default[:alm][:persona] = true

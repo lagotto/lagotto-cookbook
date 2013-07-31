@@ -14,8 +14,8 @@ discussed = Group.find_or_create_by_name(:name => "Discussed")
 recommended = Group.find_or_create_by_name(:name => "Recommended")
 
 # Load default reports
-new_user = NewUserReport.find_or_create_by_name(:name => "new_user", :display_name => "New User")
-disabled_source = DisabledSourceReport.find_or_create_by_name(:name => "disabled_source", :display_name => "Source disabled")
+# new_user = NewUserReport.find_or_create_by_name(:name => "new_user", :display_name => "New User")
+# disabled_source = DisabledSourceReport.find_or_create_by_name(:name => "disabled_source", :display_name => "Source disabled")
 
 # Load default sources
 citeulike = Citeulike.find_or_create_by_name(

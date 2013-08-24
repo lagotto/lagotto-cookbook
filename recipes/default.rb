@@ -110,6 +110,12 @@ when "centos"
     jump "ACCEPT"
   end
 
+  # Allow CouchDB
+  simple_iptables_rule "couchdb" do
+    rule "--proto tcp --dport 5984"
+    jump "ACCEPT"
+  end
+
   script "start httpd" do
     interpreter "bash"
     code "sudo /sbin/service httpd start"

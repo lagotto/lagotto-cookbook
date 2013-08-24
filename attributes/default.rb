@@ -26,3 +26,5 @@ default[:alm][:scopus] = { :username => "EXAMPLE", :salt => "EXAMPLE", :partner_
 default[:alm][:wos] = { :url => "EXAMPLE" }
 default[:alm][:seed_sample_articles] = false
 default[:alm][:environment] = "development"
+default[:couch_db][:config][:httpd][:host] = "127.0.0.1"
+default[:couch_db][:config][:httpd][:port] = 5984

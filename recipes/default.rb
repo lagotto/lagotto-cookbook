@@ -65,8 +65,8 @@ end
 # Create default CouchDB database
 script "create CouchDB database #{node[:alm][:name]}" do
   interpreter "bash"
-  code "curl -X DELETE http://#{node[:couchdb][:host]}:#{node[:couchdb][:port]}/#{node[:alm][:name]}/"
-  code "curl -X PUT http://#{node[:couchdb][:host]}:#{node[:couchdb][:port]}/#{node[:alm][:name]}/"
+  code "curl -X DELETE http://#{node[:couch_db][:config][:httpd][:host]}:#{node[:couch_db][:config][:httpd][:port]}/#{node[:alm][:name]}/"
+  code "curl -X PUT http://#{node[:couch_db][:config][:httpd][:host]}:#{node[:couch_db][:config][:httpd][:port]}/#{node[:alm][:name]}/"
   ignore_failure true
 end
 
@@ -119,5 +119,10 @@ when "centos"
   script "start httpd" do
     interpreter "bash"
     code "sudo /sbin/service httpd start"
+  end
+
+  script "start couchdb" do
+    interpreter "bash"
+    code "sudo /sbin/service couchdb start &> /dev/null"
   end
 end

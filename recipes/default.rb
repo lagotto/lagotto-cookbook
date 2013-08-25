@@ -125,9 +125,4 @@ when "centos"
     interpreter "bash"
     code "sudo /sbin/service httpd start"
   end
-
-  script "start couchdb" do
-    interpreter "bash"
-    code "sudo /sbin/service couchdb start &> /dev/null"
-  end
 end

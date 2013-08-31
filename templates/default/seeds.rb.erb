@@ -15,8 +15,7 @@ recommended = Group.find_or_create_by_name(:name => "Recommended")
 other = Group.find_or_create_by_name(:name => "Other")
 
 # Load default reports
-# new_user = NewUserReport.find_or_create_by_name(:name => "new_user", :display_name => "New User")
-# disabled_source = DisabledSourceReport.find_or_create_by_name(:name => "disabled_source", :display_name => "Source disabled")
+daily_errors = Report.find_or_create_by_name(:name => "Daily Error Report")
 
 # Load default sources
 citeulike = Citeulike.find_or_create_by_name(

@@ -26,6 +26,7 @@ end
 
 # Create new settings.yml
 require 'securerandom'
+# Set these passwords in config.json to keep them persistent
 node.set_unless['alm']['key'] = SecureRandom.hex(30)
 node.set_unless['alm']['secret'] = SecureRandom.hex(30)
 node.set_unless['alm']['api_key'] = SecureRandom.hex(10)

@@ -100,6 +100,15 @@ nature = Nature.find_or_create_by_name(
   :group_id => discussed.id,
   :url => "http://blogs.nature.com/posts.json?doi=%{doi}")
 
+wordpress = Wordpress.find_or_create_by_name(
+  :name => "wordpress",
+  :display_name => "Wordpress.com",
+  :description => "Wordpress.com is one of the largest blog hosting platforms.",
+  :state_event => "activate",
+  :workers => 1,
+  :group_id => discussed.id,
+  :url => "http://en.search.wordpress.com/?q=\"%{doi}\"&t=post&f=json")
+
 wikipedia = Wikipedia.find_or_create_by_name(
   :name => "wikipedia",
   :display_name => "Wikipedia",

@@ -63,6 +63,22 @@ pubmed = PubMed.find_or_create_by_name(
   :workers => 1,
   :group_id => cited.id,
   :url => "http://www.pubmedcentral.nih.gov/utils/entrez2pmcciting.cgi?view=xml&id=%{pub_med}")
+pmc_europe = PmcEurope.find_or_create_by_name(
+  :name => "pmceurope",
+  :display_name => "PMC Europe Citations",
+  :description => "Europe PubMed Central (Europe PMC) is an archive of life sciences journal literature.",
+  :state_event => "activate",
+  :workers => 1,
+  :group_id => cited.id,
+  :url => "http://www.ebi.ac.uk/europepmc/webservices/rest/MED/%{pub_med}/citations/1/json")
+pmc_europe_data = PmcEuropeData.find_or_create_by_name(
+  :name => "pmceuropedata",
+  :display_name => "PMC Europe Database Citations",
+  :description => "Europe PubMed Central (Europe PMC) is an archive of life sciences journal literature.",
+  :state_event => "activate",
+  :workers => 1,
+  :group_id => cited.id,
+  :url => "http://www.ebi.ac.uk/europepmc/webservices/rest/MED/%{pub_med}/databaseLinks//1/json")
 <% end -%>
 scienceseeker = ScienceSeeker.find_or_create_by_name(
 	:name => "scienceseeker",

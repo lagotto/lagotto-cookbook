@@ -357,8 +357,29 @@ if ENV['ARTICLES']
     :doi => "10.5194/se-1-1-2010",
     :title => "The Eons of Chaos and Hades",
     :published_on => "2010-02-02")
+
   Article.find_or_create_by_doi(
     :doi => "10.1590/S1413-86702012000300021",
     :title => "Terry's nails",
     :published_on => "2012-06-01")
+
+  Article.find_or_create_by_doi(
+    :doi => "10.1371/journal.pbio.0000045",
+    :title => "The Genome Sequence of Caenorhabditis briggsae: A Platform for Comparative Genomics",
+    :published_on => "2003-11-17")
+
+  Article.find_or_create_by_doi(
+    :doi => "10.1371/journal.pbio.0050254",
+    :title => "The Diploid Genome Sequence of an Individual Human",
+    :published_on => "2007-09-04")
+
+  Article.find_or_create_by_doi(
+    :doi => "10.1371/journal.pone.0044271",
+    :title => "Lesula: A New Species of <italic>Cercopithecus</italic> Monkey Endemic to the Democratic Republic of Congo and Implications for Conservation of Congo’s Central Basin",
+    :published_on => "2012-09-12")
+
+  Article.find_or_create_by_doi(
+    :doi => "10.1371/journal.pone.0033288",
+    :title => "Genome Features of 'Dark-Fly', a <italic>Drosophila</italic> Line Reared Long-Term in a Dark Environment",
+    :published_on => "2012-03-14")
 end

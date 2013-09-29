@@ -109,6 +109,15 @@ wordpress = Wordpress.find_or_create_by_name(
   :group_id => discussed.id,
   :url => "http://en.search.wordpress.com/?q=\"%{doi}\"&t=post&f=json")
 
+reddit = Reddit.find_or_create_by_name(
+  :name => "reddit",
+  :display_name => "Reddit",
+  :description => "User-generated news links.",
+  :state_event => "activate",
+  :workers => 1,
+  :group_id => discussed.id,
+  :url => "http://www.reddit.com/search.json?q=\"%{id}\"")
+
 wikipedia = Wikipedia.find_or_create_by_name(
   :name => "wikipedia",
   :display_name => "Wikipedia",

@@ -100,6 +100,15 @@ nature = Nature.find_or_create_by_name(
   :group_id => discussed.id,
   :url => "http://blogs.nature.com/posts.json?doi=%{doi}")
 
+openedition = Openedition.find_or_create_by_name(
+  :name => "openedition",
+  :display_name => "OpenEdition",
+  :description => "OpenEdition is the umbrella portal for OpenEdition Books, Revues.org, Hypotheses and Calenda, four platforms dedicated to electronic resources in the humanities and social sciences.",
+  :state_event => "activate",
+  :workers => 1,
+  :group_id => discussed.id,
+  :url => "http://search.openedition.org/feed.php?op%5B%5D=AND&q%5B%5D=%{query_url}&field%5B%5D=All&pf=Hypotheses.org")
+
 wordpress = Wordpress.find_or_create_by_name(
   :name => "wordpress",
   :display_name => "Wordpress.com",

@@ -107,7 +107,7 @@ openedition = Openedition.find_or_create_by_name(
   :state_event => "activate",
   :workers => 1,
   :group_id => discussed.id,
-  :url => "http://search.openedition.org/feed.php?op%5B%5D=AND&q%5B%5D=%{query_url}&field%5B%5D=All&pf=Hypotheses.org")
+  :url => "http://search.openedition.org/feed.php?op[]=AND&q[]=%{query_url}&field[]=All&pf=Hypotheses.org")
 
 wordpress = Wordpress.find_or_create_by_name(
   :name => "wordpress",
@@ -424,4 +424,14 @@ if ENV['ARTICLES']
     :doi => "10.1371/journal.pone.0033288",
     :title => "Genome Features of 'Dark-Fly', a <italic>Drosophila</italic> Line Reared Long-Term in a Dark Environment",
     :published_on => "2012-03-14")
+
+  Article.find_or_create_by_doi(
+    :doi => "10.2307/1158830",
+    :title => "Histoires de riz, histoires d'igname: le cas de la Moyenne Cote d'Ivoire",
+    :published_on => "1981-01-01")
+
+  Article.find_or_create_by_doi(
+    :doi => "10.2307/683422",
+    :title => "Review of: The Life and Times of Sara Baartman: The Hottentot Venus by Zola Maseko",
+    :published_on => "2000-09-01")
 end

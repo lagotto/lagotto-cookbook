@@ -44,6 +44,7 @@ unless File.exists?("/vagrant/config/database.yml")
   node.set_unless['mysql']['server_root_password'] = SecureRandom.hex(8)
   node.set_unless['mysql']['server_repl_password'] = SecureRandom.hex(8)
   node.set_unless['mysql']['server_debian_password'] = SecureRandom.hex(8)
+  database_exists = true
 else
   database = YAML::load(IO.read("/vagrant/config/database.yml"))
   server_root_password = database["#{node[:alm][:environment]}"]["password"]
@@ -51,6 +52,7 @@ else
   node.set_unless['mysql']['server_root_password'] = server_root_password
   node.set_unless['mysql']['server_repl_password'] = server_root_password
   node.set_unless['mysql']['server_debian_password'] = server_root_password
+  database_exists = false
 end
 
 template "/vagrant/config/database.yml" do
@@ -85,21 +87,29 @@ when "centos"
   end
 end
 
-# Create default databases and run migrations
-script "RAILS_ENV=#{node[:alm][:environment]} rake db:setup" do
-  interpreter "bash"
-  cwd "/vagrant"
-  if node[:alm][:seed_sample_articles]
-    code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup ARTICLES='1'"
-  else
-    code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup"
+# Create default databases if they don't exist yet and run migrations otherwise
+if database_exists
+  script "RAILS_ENV=#{node[:alm][:environment]} rake db:migrations" do
+    interpreter "bash"
+    cwd "/vagrant"
+    code "RAILS_ENV=#{node[:alm][:environment]} rake db:migrations"
+    code "RAILS_ENV=#{node[:alm][:environment]} rake db:seed"
+  end
+else
+  script "RAILS_ENV=#{node[:alm][:environment]} rake db:setup" do
+    interpreter "bash"
+    cwd "/vagrant"
+    if node[:alm][:seed_sample_articles]
+      code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup ARTICLES='1'"
+    else
+      code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup"
+    end
   end
 end
 
 # Create default CouchDB database
 script "create CouchDB database #{node[:alm][:name]}" do
   interpreter "bash"
-  code "curl -X DELETE http://#{node[:alm][:host]}:#{node[:couch_db][:config][:httpd][:port]}/#{node[:alm][:name]}/"
   code "curl -X PUT http://#{node[:alm][:host]}:#{node[:couch_db][:config][:httpd][:port]}/#{node[:alm][:name]}/"
   ignore_failure true
 end

@@ -129,6 +129,15 @@ template "/vagrant/.env" do
   mode 0644
 end
 
+# Precompile assets in production
+if node[:alm][:environment] == "production"
+  script "RAILS_ENV=#{node[:alm][:environment]} rake assets:precompile" do
+    interpreter "bash"
+    cwd "/vagrant"
+    code "RAILS_ENV=#{node[:alm][:environment]} rake assets:precompile"
+  end
+end
+
 case node['platform']
 when "ubuntu"
   node.set_unless['passenger']['root_path'] = "/var/lib/gems/1.9.1/gems/passenger-#{node['passenger']['version']}"

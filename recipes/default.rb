@@ -137,18 +137,17 @@ if node[:alm][:environment] == "production"
     code "RAILS_ENV=#{node[:alm][:environment]} rake assets:precompile"
   end
 
-  script "sudo stop alm" do
-    interpreter "bash"
-    cwd "/vagrant"
-    code "sudo stop alm"
-    ignore_failure true
+  service "alm" do
+    provider Chef::Provider::Service::Upstart
+    supports :status => true, :restart => true, :reload => true
+    action [:enable, :start]
   end
 
   script "sudo start alm" do
     interpreter "bash"
     cwd "/vagrant"
     code "sudo foreman export upstart /etc/init -a alm -l /vagrant/log -u #{node[:alm][:user]} -c worker=#{node[:alm][:concurrency]}"
-    code "sudo start alm"
+    notifies :start, "service[alm]"
   end
 end
 

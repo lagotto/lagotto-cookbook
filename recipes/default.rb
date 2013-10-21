@@ -62,9 +62,7 @@ template "/vagrant/config/database.yml" do
   mode 0644
 end
 
-unless database_exists
-  include_recipe "mysql::server"
-end
+include_recipe "mysql::server"
 
 # Seed the database with sources, groups and sample articles
 template "/vagrant/db/seeds.rb" do

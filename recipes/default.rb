@@ -63,7 +63,7 @@ template "/vagrant/config/database.yml" do
 end
 
 unless database_exists
-  #include_recipe "mysql::server"
+  include_recipe "mysql::server"
 end
 
 # Seed the database with sources, groups and sample articles
@@ -102,9 +102,9 @@ else
     interpreter "bash"
     cwd "/vagrant"
     if node[:alm][:seed_sample_articles]
-      code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup ARTICLES='1'"
+      #code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup ARTICLES='1'"
     else
-      code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup"
+      #code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup"
     end
   end
 end

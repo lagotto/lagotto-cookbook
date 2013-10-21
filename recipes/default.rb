@@ -44,7 +44,7 @@ unless File.exists?("/vagrant/config/database.yml")
   node.set_unless['mysql']['server_root_password'] = SecureRandom.hex(8)
   node.set_unless['mysql']['server_repl_password'] = SecureRandom.hex(8)
   node.set_unless['mysql']['server_debian_password'] = SecureRandom.hex(8)
-  database_exists = true
+  database_exists = false
 else
   database = YAML::load(IO.read("/vagrant/config/database.yml"))
   server_root_password = database["#{node[:alm][:environment]}"]["password"]
@@ -52,7 +52,7 @@ else
   node.set_unless['mysql']['server_root_password'] = server_root_password
   node.set_unless['mysql']['server_repl_password'] = server_root_password
   node.set_unless['mysql']['server_debian_password'] = server_root_password
-  database_exists = false
+  database_exists = true
 end
 
 template "/vagrant/config/database.yml" do
@@ -102,9 +102,9 @@ else
     interpreter "bash"
     cwd "/vagrant"
     if node[:alm][:seed_sample_articles]
-      #code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup ARTICLES='1'"
+      code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup ARTICLES='1'"
     else
-      #code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup"
+      code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup"
     end
   end
 end

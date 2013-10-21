@@ -129,12 +129,26 @@ template "/vagrant/.env" do
   mode 0644
 end
 
-# Precompile assets in production
+# Precompile assets in production and install upstart scripts for workers
 if node[:alm][:environment] == "production"
   script "RAILS_ENV=#{node[:alm][:environment]} rake assets:precompile" do
     interpreter "bash"
     cwd "/vagrant"
     code "RAILS_ENV=#{node[:alm][:environment]} rake assets:precompile"
+  end
+
+  script "sudo stop alm" do
+    interpreter "bash"
+    cwd "/vagrant"
+    code "sudo stop alm"
+    ignore_failure true
+  end
+
+  script "sudo start alm" do
+    interpreter "bash"
+    cwd "/vagrant"
+    code "sudo foreman export upstart /etc/init -a alm -l /vagrant/log -u #{node[:alm][:user]} -c worker=#{node[:alm][:concurrency]}"
+    code "sudo start alm"
   end
 end
 

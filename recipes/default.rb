@@ -154,6 +154,11 @@ when "ubuntu"
     template "alm.conf.erb"
     notifies :reload, resources(:service => "apache2"), :delayed
   end
+
+  script "restart apache2" do
+    interpreter "bash"
+    code "sudo /etc/init.d/apache2 restart"
+  end
 when "centos"
   template "/etc/httpd/conf.d/alm.conf" do
     source 'alm.conf.erb'

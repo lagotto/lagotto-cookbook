@@ -44,7 +44,7 @@ unless File.exists?("/vagrant/config/database.yml")
   node.set_unless['mysql']['server_root_password'] = SecureRandom.hex(8)
   node.set_unless['mysql']['server_repl_password'] = SecureRandom.hex(8)
   node.set_unless['mysql']['server_debian_password'] = SecureRandom.hex(8)
-  database_exists? = true
+  database_exists = true
 else
   database = YAML::load(IO.read("/vagrant/config/database.yml"))
   server_root_password = database["#{node[:alm][:environment]}"]["password"]
@@ -52,7 +52,7 @@ else
   node.set_unless['mysql']['server_root_password'] = server_root_password
   node.set_unless['mysql']['server_repl_password'] = server_root_password
   node.set_unless['mysql']['server_debian_password'] = server_root_password
-  database_exists? = false
+  database_exists = false
 end
 
 template "/vagrant/config/database.yml" do
@@ -62,7 +62,7 @@ template "/vagrant/config/database.yml" do
   mode 0644
 end
 
-unless database_exists?
+unless database_exists
   include_recipe "mysql::server"
 end
 

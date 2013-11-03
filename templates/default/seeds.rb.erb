@@ -19,8 +19,9 @@ recommended = Group.find_or_create_by_name(:name => "Recommended")
 other = Group.find_or_create_by_name(:name => "Other")
 
 # Load default reports
-daily_report = Report.find_or_create_by_name(:name => "Daily Report")
-weekly_report = Report.find_or_create_by_name(:name => "Weekly Report")
+error_report = Report.find_or_create_by_name(:name => "Daily Report")
+error_report.update_attribute(:name, "Error Report")
+status_report = Report.find_or_create_by_name(:name => "Status Report")
 disabled_source_report = Report.find_or_create_by_name(:name => "Disabled Source Report")
 
 # Load default filters

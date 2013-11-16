@@ -214,6 +214,7 @@ pmc = Pmc.find_or_create_by_name(
   :queueable => false,
   :workers => 1,
   :group_id => viewed.id,
+  :url => "<%= node[:alm][:pmc][:url] %>",
   :journals => "<%= node[:alm][:pmc][:journals] %>",
   :username => "<%= node[:alm][:pmc][:username] %>",
   :password => "<%= node[:alm][:pmc][:password] %>")

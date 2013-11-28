@@ -142,7 +142,8 @@ wikipedia = Wikipedia.find_or_create_by_name(
   :state_event => "activate",
   :workers => 1,
   :group_id => discussed.id,
-  :url => "http://%{host}/w/api.php?action=query&list=search&format=json&srsearch=%{doi}&srnamespace=0&srwhat=text&srinfo=totalhits&srprop=timestamp&srlimit=1")
+  :url => "http://%{host}/w/api.php?action=query&list=search&format=json&srsearch=%{doi}&srnamespace=%{namespace}&srwhat=text&srinfo=totalhits&srprop=timestamp&srlimit=1",
+  :languages => "en nl de sv fr it ru es pl war ceb ja vi pt zh uk ca no fi fa id cs ko hu ar commons")
 
 datacite = Datacite.find_or_create_by_name(
   :name => "datacite",

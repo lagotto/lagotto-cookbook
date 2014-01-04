@@ -176,7 +176,6 @@ pmc = Pmc.find_or_create_by_name(
   :name => "pmc",
   :display_name => "PubMed Central Usage Stats",
   :description => "PubMed Central is a free full-text archive of biomedical literature at the National Library of Medicine.",
-  :state_event => "install",
   :queueable => false,
   :group_id => viewed.id,
   :url => "<%= node[:alm][:pmc][:url] %>",

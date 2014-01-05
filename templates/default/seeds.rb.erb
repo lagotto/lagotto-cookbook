@@ -127,7 +127,7 @@ openedition = Openedition.find_or_create_by_name(
 
 <% if node[:alm][:doi_prefix] == "10.1371" -%>
 # PLOS-specific sources that require passwords, API keys and/or contracts
-if defined?(Counter)
+if Object.const_defined?(Counter)
   counter = Counter.find_or_create_by_name(
     :name => "counter",
     :display_name => "Counter",
@@ -136,7 +136,7 @@ if defined?(Counter)
     :queueable => false,
     :group_id => viewed.id)
 end
-if defined?(Wos)
+if Object.const_defined?(Wos)
   wos = Wos.find_or_create_by_name(
     :name => "wos",
     :display_name => "Web of Science",
@@ -144,7 +144,7 @@ if defined?(Wos)
     :private => 1,
     :group_id => cited.id)
   end
-if defined?(Scopus)
+if Object.const_defined?(Scopus)
 scopus = Scopus.find_or_create_by_name(
   :name => "scopus",
   :display_name => "Scopus",
@@ -154,7 +154,7 @@ scopus = Scopus.find_or_create_by_name(
   :salt => "<%= node[:alm][:scopus][:salt] %>",
   :partner_id => "<%= node[:alm][:scopus][:partner_id] %>")
 end
-if defined?(F1000)
+if Object.const_defined?(F1000)
   f1000 = F1000.find_or_create_by_name(
     :name => "f1000",
     :display_name => "F1000Prime",
@@ -162,7 +162,7 @@ if defined?(F1000)
     :state_event => "install",
     :group_id => recommended.id)
 end
-if defined?(Figshare)
+if Object.const_defined?(Figshare)
   figshare = Figshare.find_or_create_by_name(
     :name => "figshare",
     :display_name => "Figshare",

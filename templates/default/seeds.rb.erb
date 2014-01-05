@@ -48,12 +48,14 @@ citation_milestone_alert = CitationMilestoneAlert.find_or_create_by_name(
   :name => "CitationMilestoneAlert",
   :display_name => "citation milestone alert",
   :description => "Creates an alert if an article has been cited the specified number of times.")
-<% if node[:alm][:doi_prefix] == "10.1371" && Source.const_defined?('Counter') -%>
-html_ratio_too_high_error= HtmlRatioTooHighError.find_or_create_by_name(
-  :name => "HtmlRatioTooHighError",
-  :display_name => "HTML ratio too high error",
-  :description => "Raises an error if HTML/PDF ratio is higher than 50.")
-<% end %>
+<% if node[:alm][:doi_prefix] == "10.1371" -%>
+if Source.const_defined?('Counter')
+  html_ratio_too_high_error= HtmlRatioTooHighError.find_or_create_by_name(
+    :name => "HtmlRatioTooHighError",
+    :display_name => "HTML ratio too high error",
+    :description => "Raises an error if HTML/PDF ratio is higher than 50.")
+end
+<% end -%>
 
 # Load sources
 # Standard set that doesn't require configuration and is activated by default
@@ -144,7 +146,7 @@ if Source.const_defined?('Wos')
     :private => 1,
     :workers => 1,
     :group_id => cited.id)
-  end
+end
 if Source.const_defined?('Scopus')
   scopus = Scopus.find_or_create_by_name(
     :name => "scopus",

@@ -127,49 +127,39 @@ openedition = Openedition.find_or_create_by_name(
 
 <% if node[:alm][:doi_prefix] == "10.1371" -%>
 # PLOS-specific sources that require passwords, API keys and/or contracts
-if Source.const_defined?('Counter')
-  counter = Counter.find_or_create_by_name(
-    :name => "counter",
-    :display_name => "Counter",
-    :description => "Usage stats from the PLOS website",
-    :state_event => "activate",
-    :queueable => false,
-    :group_id => viewed.id)
-end
-if Source.const_defined?('Wos')
-  wos = Wos.find_or_create_by_name(
-    :name => "wos",
-    :display_name => "Web of Science",
-    :description => "Web of Science is an online academic citation index.",
-    :private => 1,
-    :group_id => cited.id)
-  end
-if Source.const_defined?('Scopus')
-  scopus = Scopus.find_or_create_by_name(
-    :name => "scopus",
-    :display_name => "Scopus",
-    :description => "The world's largest abstract and citation database of peer-reviewed literature.",
-    :group_id => cited.id,
-    :username => "<%= node[:alm][:scopus][:username] %>",
-    :salt => "<%= node[:alm][:scopus][:salt] %>",
-    :partner_id => "<%= node[:alm][:scopus][:partner_id] %>")
-end
-if Source.const_defined?('F1000')
-  f1000 = F1000.find_or_create_by_name(
-    :name => "f1000",
-    :display_name => "F1000Prime",
-    :description => "Post-publication peer review of the biomedical literature.",
-    :state_event => "install",
-    :group_id => recommended.id)
-end
-if Source.const_defined?('Figshare')
-  figshare = Figshare.find_or_create_by_name(
-    :name => "figshare",
-    :display_name => "Figshare",
-    :description => "Figures, tables and supplementary files hosted by figshare",
-    :state_event => "install",
-    :group_id => viewed.id)
-end
+counter = Counter.find_or_create_by_name(
+  :name => "counter",
+  :display_name => "Counter",
+  :description => "Usage stats from the PLOS website",
+  :state_event => "activate",
+  :queueable => false,
+  :group_id => viewed.id)
+wos = Wos.find_or_create_by_name(
+  :name => "wos",
+  :display_name => "Web of Science",
+  :description => "Web of Science is an online academic citation index.",
+  :private => 1,
+  :group_id => cited.id)
+scopus = Scopus.find_or_create_by_name(
+  :name => "scopus",
+  :display_name => "Scopus",
+  :description => "The world's largest abstract and citation database of peer-reviewed literature.",
+  :group_id => cited.id,
+  :username => "<%= node[:alm][:scopus][:username] %>",
+  :salt => "<%= node[:alm][:scopus][:salt] %>",
+  :partner_id => "<%= node[:alm][:scopus][:partner_id] %>")
+f1000 = F1000.find_or_create_by_name(
+  :name => "f1000",
+  :display_name => "F1000Prime",
+  :description => "Post-publication peer review of the biomedical literature.",
+  :state_event => "install",
+  :group_id => recommended.id)
+figshare = Figshare.find_or_create_by_name(
+  :name => "figshare",
+  :display_name => "Figshare",
+  :description => "Figures, tables and supplementary files hosted by figshare",
+  :state_event => "install",
+  :group_id => viewed.id)
 
 # These sources are retired, but we need to keep them around for the data we collected
 connotea = Connotea.find_or_create_by_name(

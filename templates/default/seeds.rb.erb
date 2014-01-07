@@ -20,7 +20,7 @@ other = Group.find_or_create_by_name(:name => "Other")
 
 # Load reports
 error_report = Report.find_or_create_by_name(:name => "Error Report")
-error_report.update_attributes(:description => "Reports summary statistics of errors",
+error_report.update_attributes(:description => "Reports error summary",
   :interval => "Daily", :private => true)
 status_report = Report.find_or_create_by_name(:name => "Status Report")
 status_report.update_attributes(:description => "Reports application status",
@@ -29,7 +29,7 @@ article_statistics_report = Report.find_or_create_by_name(:name => "Article Stat
 article_statistics_report.update_attributes(:description => "Generates CSV file of ALM for all articles",
   :interval => "Monthly", :private => false)
 disabled_source_report = Report.find_or_create_by_name(:name => "Disabled Source Report")
-disabled_source_report.update_attributes(:description => "Immediately reports when a source has been disabled (immediately),
+disabled_source_report.update_attributes(:description => "Reports when a source has been disabled",
   :interval => "Immediately", :private => true)
 
 # Load filters

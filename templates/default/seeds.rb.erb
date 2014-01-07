@@ -20,15 +20,17 @@ other = Group.find_or_create_by_name(:name => "Other")
 
 # Load reports
 error_report = Report.find_or_create_by_name(:name => "Error Report")
-error_report.update_attributes(:description => "Reports summary statistics of errors (usually daily)", :private => true)
+error_report.update_attributes(:description => "Reports summary statistics of errors",
+  :interval => "Daily", :private => true)
 status_report = Report.find_or_create_by_name(:name => "Status Report")
-status_report.update_attributes(:description => "Reports application status (usually daily)", :private => true)
+status_report.update_attributes(:description => "Reports application status",
+  :interval => "Daily", :private => true)
 article_statistics_report = Report.find_or_create_by_name(:name => "Article Statistics Report")
-article_statistics_report.update_attributes(:description => "Generates CSV file of ALM for all articles (usually monthly)",
-  :private => false)
+article_statistics_report.update_attributes(:description => "Generates CSV file of ALM for all articles",
+  :interval => "Monthly", :private => false)
 disabled_source_report = Report.find_or_create_by_name(:name => "Disabled Source Report")
-disabled_source_report.update_attributes(:description => "Immediately reports when a source has been disabled",
-  :private => true)
+disabled_source_report.update_attributes(:description => "Immediately reports when a source has been disabled (immediately),
+  :interval => "Immediately", :private => true)
 
 # Load filters
 article_not_updated_error = ArticleNotUpdatedError.find_or_create_by_name(

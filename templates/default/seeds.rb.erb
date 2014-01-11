@@ -11,7 +11,6 @@ end
 <% end %>
 
 # Load groups
-Group.delete_all(name: ['Viewed','Saved','Discussed','Cited','Recommended','Other'])
 viewed = Group.find_or_create_by_name(name: "viewed", display_name: "Viewed")
 saved = Group.find_or_create_by_name(name: "saved", display_name: "Saved")
 discussed = Group.find_or_create_by_name(name: "discussed", display_name: "Discussed")
@@ -145,6 +144,7 @@ if Source.const_defined?('Counter')
     :display_name => "Counter",
     :description => "Usage stats from the PLOS website",
     :state_event => "activate",
+    :queueable => false,
     :group_id => viewed.id)
 end
 if Source.const_defined?('Wos')

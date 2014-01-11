@@ -11,7 +11,7 @@ end
 <% end %>
 
 # Load groups
-Group.delete_all(name: ['Viewed','Saved','Discussed','Cited','Recommended','Other'])
+# Group.delete_all(name: ['Viewed','Saved','Discussed','Cited','Recommended','Other'])
 viewed = Group.find_or_create_by_name(name: "viewed", display_name: "Viewed")
 saved = Group.find_or_create_by_name(name: "saved", display_name: "Saved")
 discussed = Group.find_or_create_by_name(name: "discussed", display_name: "Discussed")

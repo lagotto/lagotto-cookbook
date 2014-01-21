@@ -1,4 +1,11 @@
 <% if node[:alm][:doi_prefix] == "10.1371" -%>
+viewed = Group.find_by_name("viewed")
+saved = Group.find_by_name("saved")
+discussed = Group.find_by_name("discussed")
+cited = Group.find_by_name("cited")
+recommended = Group.find_by_name("recommended")
+other = Group.find_by_name("other")
+
 # PLOS-specific sources that require passwords, API keys and/or contracts
 if Source.const_defined?('Counter')
   counter = Counter.find_or_create_by_name(

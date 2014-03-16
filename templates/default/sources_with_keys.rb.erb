@@ -62,7 +62,8 @@ mendeley = Mendeley.find_or_create_by_name(
   :display_name => "Mendeley",
   :description => "Mendeley is a reference manager and social bookmarking tool.",
   :group_id => saved.id,
-  :api_key => "<%= node[:alm][:mendeley][:api_key] %>")
+  :client_id => "<%= node[:alm][:mendeley][:client_id] %>",
+  :secret => "<%= node[:alm][:mendeley][:secret] %>")
 researchblogging = Researchblogging.find_or_create_by_name(
   :name => "researchblogging",
   :display_name => "Research Blogging",

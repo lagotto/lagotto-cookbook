@@ -12,8 +12,8 @@ end
 %w{ alm alm/current alm/shared alm/shared/config alm/shared/log alm/shared/db alm/shared/db/seeds alm/releases }.each do |dir|
   directory "/var/www/#{dir}" do
     owner node[:alm][:user]
-    group node[:alm][:user]
-    mode 0644
+    group node[:alm][:group]
+    mode 00644
     recursive true
   end
 end
@@ -39,8 +39,8 @@ end
 template "/var/www/alm/shared/config/settings.yml" do
   source 'settings.yml.erb'
   owner node[:alm][:user]
-  group node[:alm][:user]
-  mode 0644
+  group node[:alm][:group]
+  mode 00644
 end
 
 # Create new database.yml unless it exists already
@@ -63,8 +63,8 @@ end
 template "/var/www/alm/shared/config/database.yml" do
   source 'database.yml.erb'
   owner node[:alm][:user]
-  group node[:alm][:user]
-  mode 0644
+  group node[:alm][:group]
+  mode 00644
 end
 
 include_recipe "mysql::server"
@@ -73,8 +73,8 @@ include_recipe "mysql::server"
 template "/var/www/alm/shared/db/seeds/_custom_sources.rb" do
   source '_custom_sources.rb.erb'
   owner node[:alm][:user]
-  group node[:alm][:user]
-  mode 0644
+  group node[:alm][:group]
+  mode 00664
 end
 
 # Create default CouchDB database

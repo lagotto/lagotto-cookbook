@@ -11,9 +11,9 @@ end
 # Create shared folders
 %w{ alm/shared alm/shared/config alm/shared/log alm/shared/db alm/shared/db/seeds }.each do |dir|
   directory "/var/www/#{dir}" do
-    mode 00775
-    owner 'root'
-    group 'root'
+    owner node[:alm][:user]
+    group node[:alm][:user]
+    mode 0644
     recursive true
   end
 end
@@ -38,9 +38,9 @@ end
 
 template "/var/www/alm/shared/config/settings.yml" do
   source 'settings.yml.erb'
-  owner 'root'
-  group 'root'
-  mode 00644
+  owner node[:alm][:user]
+  group node[:alm][:user]
+  mode 0644
 end
 
 # Create new database.yml unless it exists already
@@ -62,8 +62,8 @@ end
 
 template "/var/www/alm/shared/config/database.yml" do
   source 'database.yml.erb'
-  owner 'root'
-  group 'root'
+  owner node[:alm][:user]
+  group node[:alm][:user]
   mode 0644
 end
 
@@ -72,8 +72,8 @@ include_recipe "mysql::server"
 # Add configuration settings to database seed files
 template "/var/www/alm/shared/db/seeds/_custom_sources.rb" do
   source '_custom_sources.rb.erb'
-  owner 'root'
-  group 'root'
+  owner node[:alm][:user]
+  group node[:alm][:user]
   mode 0644
 end
 

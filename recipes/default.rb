@@ -8,8 +8,8 @@ gem_package "bundler" do
   gem_binary "/usr/bin/gem"
 end
 
-# Create persistent folders
-%w{ alm/shared alm/shared/config alm/shared/db alm/shared/db/seeds }.each do |dir|
+# Create shared folders
+%w{ alm/shared alm/shared/config alm/shared/log alm/shared/db alm/shared/db/seeds }.each do |dir|
   directory "/var/www/#{dir}" do
     mode 00775
     owner 'root'

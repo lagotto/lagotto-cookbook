@@ -8,6 +8,16 @@ gem_package "bundler" do
   gem_binary "/usr/bin/gem"
 end
 
+# Create persistent folders
+%w{ alm/shared alm/shared/config alm/shared/db alm/shared/db/seeds }.each do |dir|
+  directory "/var/www/#{dir}" do
+    mode 00775
+    owner 'root'
+    group 'root'
+    recursive true
+  end
+end
+
 require 'securerandom'
 # Create new settings.yml unless it exists already
 # Set these passwords in config.json to keep them persistent
@@ -30,7 +40,7 @@ template "/var/www/alm/shared/config/settings.yml" do
   source 'settings.yml.erb'
   owner 'root'
   group 'root'
-  mode 0644
+  mode 00644
 end
 
 # Create new database.yml unless it exists already

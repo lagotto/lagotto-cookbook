@@ -77,6 +77,24 @@ template "/var/www/alm/shared/db/seeds/_custom_sources.rb" do
   mode 0644
 end
 
+# Install MySQL gem
+gem_package "mysql2" do
+    version "0.3.13"
+  end
+
+# Create default databases if they don't exist yet
+unless database_exists
+  script "RAILS_ENV=#{node[:alm][:environment]} rake db:setup" do
+    interpreter "bash"
+    cwd "/var/www/alm/current"
+    if node[:alm][:seed_sample_articles]
+      code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup ARTICLES='1'"
+    else
+      code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup"
+    end
+  end
+end
+
 # Create default CouchDB database
 script "create CouchDB database #{node[:alm][:name]}" do
   interpreter "bash"

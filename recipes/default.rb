@@ -84,13 +84,13 @@ gem_package "mysql2" do
 
 # Create default databases if they don't exist yet
 unless database_exists
-  script "bundle exec RAILS_ENV=#{node[:alm][:environment]} rake db:setup" do
+  script "bundle exec rake db:setup RAILS_ENV=#{node[:alm][:environment]} " do
     interpreter "bash"
     cwd "/var/www/alm/current"
     if node[:alm][:seed_sample_articles]
-      code "bundle exec RAILS_ENV=#{node[:alm][:environment]} rake db:setup ARTICLES='1'"
+      code "bundle exec rake db:setup ARTICLES='1' RAILS_ENV=#{node[:alm][:environment]} "
     else
-      code "bundle exec RAILS_ENV=#{node[:alm][:environment]} rake db:setup"
+      code "bundle exec rake db:setup RAILS_ENV=#{node[:alm][:environment]} "
     end
   end
 end

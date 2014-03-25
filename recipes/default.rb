@@ -59,40 +59,13 @@ end
 
 include_recipe "mysql::server"
 
-# # Add configuration settings to database seed files
-# template "/var/www/alm/current/_custom_sources.rb" do
-#   source '_custom_sources.rb.erb'
-#   owner 'root'
-#   group 'root'
-#   mode 0644
-# end
-
-# # Install required gems via bundler
-# script "bundle" do
-#   interpreter "bash"
-#   cwd "/vagrant"
-#   code "bundle install"
-# end
-
-# # Create default databases if they don't exist yet and run migrations otherwise
-# if database_exists
-#   script "RAILS_ENV=#{node[:alm][:environment]} rake db:migrations" do
-#     interpreter "bash"
-#     cwd "/vagrant"
-#     code "RAILS_ENV=#{node[:alm][:environment]} rake db:migrations"
-#     code "RAILS_ENV=#{node[:alm][:environment]} rake db:seed"
-#   end
-# else
-#   script "RAILS_ENV=#{node[:alm][:environment]} rake db:setup" do
-#     interpreter "bash"
-#     cwd "/vagrant"
-#     if node[:alm][:seed_sample_articles]
-#       code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup ARTICLES='1'"
-#     else
-#       code "RAILS_ENV=#{node[:alm][:environment]} rake db:setup"
-#     end
-#   end
-# end
+# Add configuration settings to database seed files
+template "/var/www/alm/shared/db/seeds/_custom_sources.rb" do
+  source '_custom_sources.rb.erb'
+  owner 'root'
+  group 'root'
+  mode 0644
+end
 
 # Create default CouchDB database
 script "create CouchDB database #{node[:alm][:name]}" do

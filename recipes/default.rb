@@ -9,7 +9,7 @@ gem_package "bundler" do
 end
 
 # Create shared folders
-%w{ alm/shared alm/shared/config alm/shared/log alm/shared/db alm/shared/db/seeds }.each do |dir|
+%w{ alm alm/shared alm/shared/config alm/shared/log alm/shared/db alm/shared/db/seeds alm/releases }.each do |dir|
   directory "/var/www/#{dir}" do
     owner node[:alm][:user]
     group node[:alm][:user]

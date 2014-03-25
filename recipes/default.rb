@@ -9,11 +9,11 @@ gem_package "bundler" do
 end
 
 # Create shared folders and set permissions
-%w{ alm alm/current alm/shared alm/shared/config alm/shared/log alm/shared/db alm/shared/db/seeds alm/releases }.each do |dir|
+%w{ alm alm/current alm/shared alm/shared/config alm/shared/log alm/shared/db alm/shared/db/seeds }.each do |dir|
   directory "/var/www/#{dir}" do
     owner node[:alm][:user]
     group node[:alm][:group]
-    mode 00644
+    mode 0744
     recursive true
   end
 end
@@ -40,7 +40,7 @@ template "/var/www/alm/shared/config/settings.yml" do
   source 'settings.yml.erb'
   owner node[:alm][:user]
   group node[:alm][:group]
-  mode 00644
+  mode 0644
 end
 
 # Create new database.yml unless it exists already
@@ -64,7 +64,7 @@ template "/var/www/alm/shared/config/database.yml" do
   source 'database.yml.erb'
   owner node[:alm][:user]
   group node[:alm][:group]
-  mode 00644
+  mode 0644
 end
 
 include_recipe "mysql::server"
@@ -74,7 +74,7 @@ template "/var/www/alm/shared/db/seeds/_custom_sources.rb" do
   source '_custom_sources.rb.erb'
   owner node[:alm][:user]
   group node[:alm][:group]
-  mode 00664
+  mode 0644
 end
 
 # Create default CouchDB database

@@ -10,6 +10,7 @@ default[:alm][:uid] = "doi"
 default[:alm][:doi_prefix] = ""
 default[:alm][:key] = nil
 default[:alm][:secret] = nil
+default[:alm][:persona] = true
 default[:alm][:cas_url] = "https://example.com"
 default[:alm][:cas_prefix] = "/cas"
 default[:alm][:user] = "vagrant"

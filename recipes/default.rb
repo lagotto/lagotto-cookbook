@@ -9,7 +9,7 @@ gem_package "bundler" do
 end
 
 # Create shared folders and set permissions
-%w{ alm alm/current alm/shared alm/shared/config alm/shared/log alm/shared/bundle alm/shared/db alm/shared/db/seeds alm/releases }.each do |dir|
+%w{ alm alm/current alm/shared alm/releases }.each do |dir|
   directory "/var/www/#{dir}" do
     owner node[:alm][:user]
     group node[:alm][:group]
@@ -79,12 +79,12 @@ template "/var/www/alm/shared/db/seeds/_custom_sources.rb" do
 end
 
 # Install MySQL gem
-gem_package "mysql2" do
-  gem_binary "/usr/bin/gem"
-  version "0.3.13"
-end
+# gem_package "mysql2" do
+#   gem_binary "/usr/bin/gem"
+#   version "0.3.13"
+# end
 
-# Create default database
+# Create default MySQL database
 mysql_database "#{node[:alm][:name]}_#{node[:alm][:environment]}" do
   connection(
     :host     => 'localhost',

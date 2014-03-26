@@ -7,6 +7,7 @@ long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version           "1.6.0"
 depends           "git"
 depends           "mysql"
+depends           "database"
 depends           "couchdb"
 depends           "phantomjs"
 depends           "passenger_apache2"

@@ -82,17 +82,12 @@ gem_package "mysql2" do
     version "0.3.13"
   end
 
-# Create default databases if they don't exist yet
-unless database_exists
-  script "bundle exec rake db:setup RAILS_ENV=#{node[:alm][:environment]} " do
-    interpreter "bash"
-    cwd "/var/www/alm/current"
-    if node[:alm][:seed_sample_articles]
-      code "bundle exec rake db:setup ARTICLES='1' RAILS_ENV=#{node[:alm][:environment]} "
-    else
-      code "bundle exec rake db:setup RAILS_ENV=#{node[:alm][:environment]} "
-    end
-  end
+# Create default database
+mysql_database "#{node[:alm][:name]}_#{node[:alm][:environment]}" do
+  connection { :host => 'localhost',
+               :username => 'root',
+               :password => node['mysql']['server_root_password'] }
+  action :create
 end
 
 # Create default CouchDB database

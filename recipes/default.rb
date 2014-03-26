@@ -68,6 +68,7 @@ template "/var/www/alm/shared/config/database.yml" do
 end
 
 include_recipe "mysql::server"
+include_recipe "database::mysql"
 
 # Add configuration settings to database seed files
 template "/var/www/alm/shared/db/seeds/_custom_sources.rb" do

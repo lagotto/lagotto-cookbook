@@ -84,9 +84,11 @@ gem_package "mysql2" do
 
 # Create default database
 mysql_database "#{node[:alm][:name]}_#{node[:alm][:environment]}" do
-  connection { :host => 'localhost',
-               :username => 'root',
-               :password => node['mysql']['server_root_password'] }
+  connection(
+    :host     => 'localhost',
+    :username => 'root',
+    :password => node['mysql']['server_root_password']
+  )
   action :create
 end
 

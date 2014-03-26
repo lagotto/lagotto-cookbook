@@ -79,8 +79,9 @@ end
 
 # Install MySQL gem
 gem_package "mysql2" do
-    version "0.3.13"
-  end
+  gem_binary "/usr/bin/gem"
+  version "0.3.13"
+end
 
 # Create default database
 mysql_database "#{node[:alm][:name]}_#{node[:alm][:environment]}" do

@@ -1,5 +1,10 @@
+# Upgrade openssl to latest version
+package 'openssl' do
+  action :upgrade
+end
+
 # Install required packages
-%w{openssl libxml2-dev libxslt-dev ruby1.9.3 curl}.each do |pkg|
+%w{libxml2-dev libxslt-dev ruby1.9.3 curl}.each do |pkg|
   package pkg do
     action :install
   end

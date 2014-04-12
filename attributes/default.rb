@@ -15,7 +15,6 @@ default[:alm][:cas_url] = "https://example.org"
 default[:alm][:cas_prefix] = "/cas"
 default[:alm][:user] = "vagrant"
 default[:alm][:group] = "www-data"
-default[:alm][:concurrency] = 1
 default[:alm][:workers] = 3
 default[:alm][:counter] = { url: nil }
 default[:alm][:mendeley] = { client_id: nil, secret: nil }

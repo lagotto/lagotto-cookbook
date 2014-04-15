@@ -72,6 +72,11 @@ template "/var/www/alm/shared/config/database.yml" do
   mode 0644
 end
 
+service "mysql" do
+  action :start
+  only_if "test -f /etc/init.d/mysql"
+end
+
 include_recipe "mysql::server"
 include_recipe "database::mysql"
 

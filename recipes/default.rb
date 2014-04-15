@@ -4,7 +4,7 @@ package 'openssl' do
 end
 
 # Install required packages
-%w{libxml2-dev libxslt-dev libicu-dev ruby1.9.3 curl}.each do |pkg|
+%w{libxml2-dev libxslt-dev ruby1.9.3 curl}.each do |pkg|
   package pkg do
     action :install
   end

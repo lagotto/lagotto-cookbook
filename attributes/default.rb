@@ -27,4 +27,7 @@ default[:alm][:copernicus] = { url: nil, username: nil, password: nil }
 default[:alm][:researchblogging] = { username: nil, password: nil }
 default[:alm][:scopus] = { api_key: nil, insttoken: nil }
 default[:alm][:seed_sample_articles] = false
+
 default[:couch_db][:config][:httpd][:port] = 5984
+
+default['mysql']['data_dir'] = "/var/lib/mysql"

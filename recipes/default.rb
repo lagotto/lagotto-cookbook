@@ -72,9 +72,6 @@ template "/var/www/alm/shared/config/database.yml" do
   mode 0644
 end
 
-# Workaround for wrong settings in mysql cookbook
-node.set_unless['mysql']['pid_file'] = '/var/run/mysqld/mysql.pid'
-
 include_recipe "mysql::server"
 include_recipe "database::mysql"
 

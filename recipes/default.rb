@@ -22,7 +22,7 @@ package 'openssl' do
 end
 
 # Install required packages
-%w{libxml2-dev libxslt-dev ruby2.1 curl}.each do |pkg|
+%w{libxml2-dev libxslt-dev ruby2.1 ruby2.1-dev curl}.each do |pkg|
   package pkg do
     action :install
   end

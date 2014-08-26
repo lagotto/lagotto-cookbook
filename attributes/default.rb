@@ -29,3 +29,6 @@ default[:alm][:scopus] = { api_key: nil, insttoken: nil }
 default[:alm][:seed_sample_articles] = false
 
 default[:couch_db][:config][:httpd][:port] = 5984
+
+default['phantomjs']['version'] = "1.9.7"
+default['phantomjs']['base_url'] = "https://bitbucket.org/ariya/phantomjs/downloads"

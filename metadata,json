@@ -11,8 +11,7 @@
     "git": ">= 0.0.0",
     "mysql": ">= 0.0.0",
     "database": ">= 0.0.0",
-    "couchdb": ">= 0.0.0",
-    "passenger_apache2": ">= 0.0.0"
+    "couchdb": ">= 0.0.0"
   },
-  "version": "1.9.1"
+  "version": "2.0.0"
 }

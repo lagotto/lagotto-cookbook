@@ -1,4 +1,4 @@
-alm-cookbook
+ALM Cookbook
 ============
 
 Chef cookbook for installing ALM application. More information [here](https://github.com/articlemetrics/alm).

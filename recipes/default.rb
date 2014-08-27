@@ -7,6 +7,13 @@ include_recipe "postfix"
 include_recipe "phantomjs"
 include_recipe "capistrano"
 
+# install additional required packages
+%W{ libpq-dev }.each do |pkg|
+  package pkg do
+    action :install
+  end
+end
+
 # create additional shared folders
 %w{ shared/db/seeds shared/public/files }.each do |dir|
   directory "/var/www/#{node['capistrano']['application']}/#{dir}" do

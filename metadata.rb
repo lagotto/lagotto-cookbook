@@ -11,6 +11,7 @@ depends           "phantomjs", "~> 1.0.3"
 depends           "mysql", '~> 5.4.3'
 depends           "database", '~> 2.3.0'
 depends           "couchdb"
+depends           "ruby", "~> 0.1.0"
 depends           "passenger_nginx", "~> 0.1.0"
 depends           "capistrano", "~> 0.1.0"
 

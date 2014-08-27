@@ -8,7 +8,7 @@ include_recipe "phantomjs"
 include_recipe "capistrano"
 
 # create additional shared folders
-%w{ public/filesshared/db/seeds shared/public/files }.each do |dir|
+%w{ shared/db/seeds shared/public/files }.each do |dir|
   directory "/var/www/#{node['capistrano']['application']}/#{dir}" do
     owner node['capistrano']['deploy_user']
     group node['capistrano']['group']

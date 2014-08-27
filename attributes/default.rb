@@ -28,6 +28,3 @@ default['capistrano']['application'] = "alm"
 default['capistrano']['rails_env'] = "development"
 
 default['couch_db']['config']['httpd']['port'] = 5984
-
-default['phantomjs']['version'] = "1.9.7"
-default['phantomjs']['base_url'] = "https://bitbucket.org/ariya/phantomjs/downloads"

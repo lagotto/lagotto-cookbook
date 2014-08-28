@@ -1,4 +1,4 @@
-default['alm']['host'] = "33.33.33.44"
+default['alm']['host'] = "localhost"
 default['alm']['useragent'] = "Article-Level Metrics"
 default['alm']['api_key'] = nil
 default['alm']['admin'] = { username: "articlemetrics", name: "Admin", email: "admin@example.com", password: nil }
@@ -26,5 +26,8 @@ default['alm']['scopus'] = { api_key: nil, insttoken: nil }
 
 default['capistrano']['application'] = "alm"
 default['capistrano']['rails_env'] = "development"
+
+default['capistrano']['linked_files'] = %w{ config/database.yml config/settings.yml db/seeds/_custom_sources.rb }
+default['capistrano']['linked_dirs'] = %w{ bin log data tmp/pids tmp/sockets vendor/bundle public/files db/seeds }
 
 default['couch_db']['config']['httpd']['port'] = 5984

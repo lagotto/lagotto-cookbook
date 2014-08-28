@@ -12,7 +12,6 @@ cookbook "passenger_nginx",
 cookbook "capistrano",
   :git => "git@github.com:articlemetrics/capistrano-cookbook.git"
 cookbook "mysql"
-cookbook 'database'
 cookbook "phantomjs"
 cookbook "memcached"
 cookbook "couchdb"

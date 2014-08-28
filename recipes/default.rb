@@ -41,8 +41,11 @@ template "/var/www/#{node['capistrano']['application']}/shared/config/settings.y
 end
 
 # copy settings file
-bash "cp -p /var/www/#{node['capistrano']['application']}/shared/config/settings.yml /var/www/#{node['capistrano']['application']}/current/config/settings.yml" do
-  user node['capistrano']['deploy_user']
+file "/var/www/#{node['capistrano']['application']}/shared/config/settings.yml" do
+  content ::File.open("/var/www/#{node['capistrano']['application']}/current/config/settings.yml").read
+  owner node['capistrano']['deploy_user']
+  group node['capistrano']['group']
+  mode 0644
 end
 
 # create and symlink shared folders, bundle install gems, precompile assets and run migrations

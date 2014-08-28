@@ -28,6 +28,6 @@ default['capistrano']['application'] = "alm"
 default['capistrano']['rails_env'] = "development"
 
 default['capistrano']['linked_files'] = %w{ config/database.yml config/settings.yml db/seeds/_custom_sources.rb }
-default['capistrano']['linked_dirs'] = %w{ bin log data tmp/pids tmp/sockets vendor/bundle public/files db/seeds }
+default['capistrano']['linked_dirs'] = %w{ bin log data tmp tmp/pids tmp/sockets vendor vendor/bundle public public/files db db/seeds }
 
 default['couch_db']['config']['httpd']['port'] = 5984

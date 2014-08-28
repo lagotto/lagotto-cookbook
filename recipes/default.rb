@@ -38,10 +38,12 @@ template "/var/www/#{node['capistrano']['application']}/shared/config/settings.y
   owner node['capistrano']['deploy_user']
   group node['capistrano']['group']
   mode 0644
+  notifies :run, "file[settings.yml]", :immediately
 end
 
 # copy settings file
-file "/var/www/#{node['capistrano']['application']}/shared/config/settings.yml" do
+file "settings.yml" do
+  path "/var/www/#{node['capistrano']['application']}/shared/config/settings.yml"
   content ::File.open("/var/www/#{node['capistrano']['application']}/current/config/settings.yml").read
   owner node['capistrano']['deploy_user']
   group node['capistrano']['group']

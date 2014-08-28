@@ -4,7 +4,7 @@ maintainer_email  "mfenner@plos.org"
 license           "Apache 2.0"
 description       "Install and configure ALM application"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           "3.1.9"
+version           "3.1.10"
 depends           "memcached"
 depends           "postfix"
 depends           "phantomjs", "~> 1.0.3"

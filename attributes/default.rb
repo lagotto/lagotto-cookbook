@@ -1,12 +1,14 @@
+require 'securerandom'
+
 default['alm']['host'] = "localhost"
 default['alm']['useragent'] = "Article-Level Metrics"
-default['alm']['api_key'] = nil
+default['alm']['api_key'] = SecureRandom.hex(20)
 default['alm']['admin'] = { username: "articlemetrics", name: "Admin", email: "admin@example.com", password: nil }
 default['alm']['mail'] = { address: "localhost", port: 25, domain: "localhost", enable_starttls_auto: true }
 default['alm']['uid'] = "doi"
 default['alm']['doi_prefix'] = ""
-default['alm']['key'] = nil
-default['alm']['secret'] = nil
+default['alm']['key'] = SecureRandom.hex(30)
+default['alm']['secret'] = SecureRandom.hex(30)
 default['alm']['persona'] = true
 default['alm']['cas_url'] = "https://example.org"
 default['alm']['cas_prefix'] = "/cas"

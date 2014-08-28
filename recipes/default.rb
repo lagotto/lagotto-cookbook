@@ -21,6 +21,9 @@ http_request "create couchdb database" do
   ignore_failure true
 end
 
+# configure nginx virtual host, and create and symlink shared folders
+include_recipe "capistrano::default"
+
 # Add configuration settings to database seed files
 template "/var/www/#{node['capistrano']['application']}/shared/db/seeds/_custom_sources.rb" do
   source '_custom_sources.rb.erb'
@@ -35,6 +38,12 @@ template "/var/www/#{node['capistrano']['application']}/shared/config/settings.y
   owner node['capistrano']['deploy_user']
   group node['capistrano']['group']
   mode 0644
+end
+
+# symlink settings file
+bash "ln -fs /var/www/#{node['capistrano']['application']}/shared/config/settings.yml config/settings.yml" do
+  user node['capistrano']['deploy_user']
+  cwd "/var/www/#{node['capistrano']['application']}/current"
 end
 
 # create and symlink shared folders, bundle install gems, precompile assets and run migrations

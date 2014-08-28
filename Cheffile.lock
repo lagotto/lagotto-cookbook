@@ -54,9 +54,9 @@ SITE
 GIT
   remote: git@github.com:articlemetrics/capistrano-cookbook.git
   ref: master
-  sha: d257b9b7d290adbd050fd9872095d8893fb55ec6
+  sha: 789bd6688e97e80482940434da38197665adc19e
   specs:
-    capistrano (0.2.7)
+    capistrano (0.2.8)
       mysql (~> 5.4.3)
       passenger_nginx (~> 0.1.0)
       ruby (~> 0.1.0)

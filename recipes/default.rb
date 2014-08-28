@@ -41,12 +41,9 @@ template "/var/www/#{node['capistrano']['application']}/shared/config/settings.y
 end
 
 # copy settings file
-remote_file "Copy settings.yml" do
-  path "/var/www/#{node['capistrano']['application']}/current/config/settings.yml"
-  source "file:///var/www/#{node['capistrano']['application']}/shared/config/settings.yml"
-  owner node['capistrano']['deploy_user']
-  group node['capistrano']['group']
-  mode 0644
+bash "cp -p /var/www/#{node['capistrano']['application']}/shared/config/settings.yml config/settings.yml" do
+  user node['capistrano']['deploy_user']
+  cwd "/var/www/#{node['capistrano']['application']}/current"
 end
 
 # create and symlink shared folders, bundle install gems, precompile assets and run migrations

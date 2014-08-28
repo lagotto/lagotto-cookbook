@@ -38,7 +38,7 @@ template "/var/www/#{node['capistrano']['application']}/shared/config/settings.y
   owner node['capistrano']['deploy_user']
   group node['capistrano']['group']
   mode 0644
-  notifies :run, "file[settings.yml]", :immediately
+  notifies :create, "file[settings.yml]", :immediately
 end
 
 # copy settings file

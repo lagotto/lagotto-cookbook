@@ -1,5 +1,5 @@
 defaults: &defaults
-  hostname: <%= node['hostname'] %>
+  hostname: <%= "#{node['hostname']}.#{node['domain']}" %>
   useragent: <%= node['alm'][:useragent] %>
   api_key: <%= node['alm'][:api_key] %>
   notification_email: <%= node['alm'][:admin][:email] %>

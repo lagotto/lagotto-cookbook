@@ -28,7 +28,7 @@ passenger_nginx node['alm']['name'] do
 end
 
 # create configuration files
-capistrano_file "config/settings.yml" do
+capistrano_template "config/settings.yml" do
   application node['alm']['name']
   params node['alm']['settings']
 end

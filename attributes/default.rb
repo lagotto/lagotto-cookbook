@@ -6,6 +6,9 @@ default['alm']['web'] = { 'default_server' => true }
 default['alm']['db'] = { 'user' => 'root', 'password' => node['mysql']['server_root_password'], 'host' => '127.0.0.1' }
 default['alm']['couchdb'] = { 'url' => 'http://127.0.0.1:5984/alm' }
 
+
+default['alm']['settings'] = {}
+
 default['alm']['useragent'] = "Article-Level Metrics"
 default['alm']['api_key'] = SecureRandom.hex(20)
 default['alm']['admin'] = { username: "articlemetrics", name: "Admin", email: "admin@example.com", password: nil }

@@ -27,9 +27,14 @@ passenger_nginx node['alm']['name'] do
   default_server  node['alm']['web']['default_server']
 end
 
+# create configuration files
+capistrano_file "config/settings.yml" do
+  application node['alm']['name']
+  params node['alm']['settings']
+end
+
 # create required files and folders, and deploy application
 capistrano node['alm']['name'] do
-  templates %w{ config/settings.yml db/seeds/_custom_sources.rb }
   rails_env node['alm']['rails_env']
   action [:config, :bundle_install, :precompile_assets, :migrate, :restart]
 end

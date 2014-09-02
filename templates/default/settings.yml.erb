@@ -16,9 +16,9 @@ defaults: &defaults
   doi_prefix: <%= @params[:doi_prefix] %>
   uid: <%= @params[:uid] %>
   mail:
-    address: <%= @params[:address] %>
-    port: <%= @params[:port] %>
-    domain: <%= @params[:domain] %>
+    address: <%= @params[:mail][:address] %>
+    port: <%= @params[:mail][:port] %>
+    domain: <%= @params[:mail][:domain] %>
 
 development:
   <<: *defaults

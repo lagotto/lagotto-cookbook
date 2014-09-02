@@ -16,17 +16,19 @@ default['alm']['couchdb'] = { 'url' => 'http://127.0.0.1:5984/alm' }
 
 # config/settings.yml
 default['alm']['settings'] = {
-  "useragent"  => "Article-Level Metrics",
-  "api_key"    => SecureRandom.hex(20),
-  "uid"        => "doi",
-  "doi_prefix" => "",
-  "key"        => SecureRandom.hex(30),
-  "secret"     => SecureRandom.hex(30),
-  "persona"    => true,
-  "cas_url"    => "https://example.org",
-  "cas_prefix" => "/cas",
-  "workers"    => 3,
-  "mail"       => { address: "localhost", port: 25, domain: "localhost", enable_starttls_auto: true }
+  "useragent"          => "Article-Level Metrics",
+  "notification_email" => "admin@example.com",
+  "api_key"            => SecureRandom.hex(20),
+  "uid"                => "doi",
+  "doi_prefix"         => "",
+  "rest_auth_site_key" => SecureRandom.hex(30),
+  "secret_token"       => SecureRandom.hex(30),
+  "persona"            => true,
+  "cas_url"            => "https://example.org",
+  "cas_prefix"         => "/cas",
+  "workers"            => 3,
+  "couchdb_url"        => node['alm']['couchdb']['url'],
+  "mail"               => { address: "localhost", port: 25, domain: "localhost", enable_starttls_auto: true }
 }
 
 # db/seeds/_custom_sources.rb

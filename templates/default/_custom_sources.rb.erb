@@ -5,9 +5,7 @@
 
 <% if @params[:admin][:password] -%>
 # Load default admin user
-unless Rails.env.production?
-  User.create(:username => "<%= @params[:admin][:username] %>", :name => "<%= @params[:admin][:name] %>", :email => "<%= @params[:admin][:email] %>", :password => "<%= @params[:admin][:password] %>", :password_confirmation => "<%= @params[:admin][:password] %>") if User.count == 0
-end
+User.find_or_create_by_username(:username => "<%= @params[:admin][:username] %>", :name => "<%= @params[:admin][:name] %>", :email => "<%= @params[:admin][:email] %>", :password => "<%= @params[:admin][:password] %>", :password_confirmation => "<%= @params[:admin][:password] %>")
 <% end -%>
 # Load sources
 viewed = Group.find_or_create_by_name(name: "viewed", display_name: "Viewed")

@@ -7,7 +7,10 @@ default['alm']['deploy_user'] = 'vagrant'
 default['alm']['group'] = 'vagrant'
 default['alm']['rails_env'] = "development"
 default['alm']['web'] = { 'default_server' => true }
-default['alm']['db'] = { 'user' => 'root', 'password' => node['mysql']['server_root_password'], 'host' => '127.0.0.1' }
+default['alm']['db'] = {
+  'user' => 'root',
+  'password' => node['mysql']['server_root_password'],
+  'host' => '127.0.0.1' }
 default['alm']['couchdb'] = { 'url' => 'http://127.0.0.1:5984/alm' }
 
 # config/settings.yml
@@ -22,21 +25,21 @@ default['alm']['settings'] = {
   "cas_url"    => "https://example.org",
   "cas_prefix" => "/cas",
   "workers"    => 3,
-  "admin"      => { username: "articlemetrics", name: "Admin", email: "admin@example.com", password: nil },
   "mail"       => { address: "localhost", port: 25, domain: "localhost", enable_starttls_auto: true }
 }
 
 # db/seeds/_custom_sources.rb
 default['alm']['sources'] = {
-  "counter"        => { url: nil },
-  "mendeley"       => { client_id: nil, secret: nil },
-  "pmc"            => { url: nil, journals: nil, username: nil, password: nil },
-  "f1000"          => {},
-  "facebook"       => { access_token: nil },
-  "twitter_search" => { access_token: nil },
-  "crossref"       => { username: nil, password: nil },
+  "counter"          => { url: nil },
+  "mendeley"         => { client_id: nil, secret: nil },
+  "pmc"              => { url: nil, journals: nil, username: nil, password: nil },
+  "f1000"            => {},
+  "facebook"         => { access_token: nil },
+  "twitter_search"   => { access_token: nil },
+  "crossref"         => { username: nil, password: nil },
   "researchblogging" => { username: nil, password: nil },
-  "scopus"           => { api_key: nil, insttoken: nil }
-
+  "scopus"           => { api_key: nil, insttoken: nil },
+  "copernicus"       => {},
+  "admin"            => { username: "articlemetrics", name: "Admin", email: "admin@example.com", password: nil }
 }
 

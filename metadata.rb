@@ -16,10 +16,10 @@ depends           "database"
 depends           "couchdb"
 
 # our own cookbooks
-depends           "ruby", "~> 0.2.0"
-depends           "passenger_nginx", "~> 0.2.0"
-depends           "mysql_rails", "~> 0.1.0"
-depends           "capistrano", "~> 0.5.0"
+depends           "ruby", "~> 0.3.0"
+depends           "passenger_nginx", "~> 0.3.0"
+depends           "mysql_rails", "~> 0.2.0"
+depends           "capistrano", "~> 0.6.0"
 
 %w{ ubuntu }.each do |platform|
   supports platform

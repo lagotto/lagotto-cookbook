@@ -5,12 +5,7 @@ include_recipe "postfix"
 include_recipe "phantomjs"
 
 # install mysql and create configuration file and database
-mysql_rails node['alm']['name'] do
-  username        node['alm']['db']['user']
-  password        node['alm']['db']['password']
-  host            node['alm']['db']['host']
-  deploy_user     node['alm']['deploy_user']
-  rails_env       node['alm']['rails_env']
+mysql_rails 'alm' do
   action          [:config, :setup]
 end
 
@@ -21,30 +16,24 @@ bash "create CouchDB database" do
 end
 
 # install nginx and create configuration file and application root
-passenger_nginx node['alm']['name'] do
-  rails_env       node['alm']['rails_env']
-  deploy_user     node['alm']['deploy_user']
-  default_server  node['alm']['web']['default_server']
+passenger_nginx 'alm' do
+  action          :config
 end
 
 # create configuration files
-capistrano_template "config/settings.yml" do
-  source          "settings.yml.erb"
-  deploy_user     node['alm']['deploy_user']
-  application     node['alm']['name']
+capistrano_template 'config/settings.yml' do
+  source          'settings.yml.erb'
+  application     'alm'
   params          node['alm']['settings']
 end
 
-capistrano_template "db/seeds/_custom_sources.rb" do
-  source          "_custom_sources.rb.erb"
-  deploy_user     node['alm']['deploy_user']
-  application     node['alm']['name']
+capistrano_template 'db/seeds/_custom_sources.rb' do
+  source          '_custom_sources.rb.erb'
+  application     'alm'
   params          node['alm']['sources']
 end
 
 # create required files and folders, and deploy application
-capistrano node['alm']['name'] do
-  rails_env       node['alm']['rails_env']
-  deploy_user     node['alm']['deploy_user']
+capistrano 'alm' do
   action          [:config, :bundle_install, :precompile_assets, :migrate, :restart]
 end

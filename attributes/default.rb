@@ -11,7 +11,7 @@ default['alm']['web'] = { 'default_server' => true }
 default['alm']['db'] = {
   'user' => 'vagrant',
   'password' => SecureRandom.hex(10),
-  'host' => '127.0.0.1' }
+  'host' => 'localhost' }
 default['alm']['couchdb'] = { 'url' => 'http://127.0.0.1:5984/alm' }
 
 # config/settings.yml
@@ -21,8 +21,8 @@ default['alm']['settings'] = {
   "api_key"            => SecureRandom.hex(20),
   "uid"                => "doi",
   "doi_prefix"         => "",
-  "rest_auth_site_key" => SecureRandom.hex(30),
-  "secret_token"       => SecureRandom.hex(30),
+  "rest_auth_site_key" => SecureRandom.hex(34),
+  "secret_token"       => SecureRandom.hex(34),
   "persona"            => true,
   "cas_url"            => "https://example.org",
   "cas_prefix"         => "/cas",

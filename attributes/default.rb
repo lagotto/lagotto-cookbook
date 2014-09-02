@@ -1,5 +1,6 @@
 require 'securerandom'
 
+default['user'] = 'vagrant'
 default['ruby']['packages'] = %w{ libxml2-dev libxslt-dev libmysqlclient-dev nodejs libpq-dev }
 
 default['alm']['name'] = "alm"

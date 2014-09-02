@@ -4,7 +4,7 @@ maintainer_email  "mfenner@plos.org"
 license           "Apache 2.0"
 description       "Install and configure ALM application"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           "3.4.1"
+version           "3.4.2"
 
 # opscode cookbooks
 depends           "apt"

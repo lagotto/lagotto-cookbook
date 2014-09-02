@@ -9,8 +9,8 @@ default['alm']['group'] = 'vagrant'
 default['alm']['rails_env'] = "development"
 default['alm']['web'] = { 'default_server' => true }
 default['alm']['db'] = {
-  'user' => 'root',
-  'password' => node['mysql']['server_root_password'],
+  'user' => 'vagrant',
+  'password' => SecureRandom.hex(10),
   'host' => '127.0.0.1' }
 default['alm']['couchdb'] = { 'url' => 'http://127.0.0.1:5984/alm' }
 

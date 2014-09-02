@@ -34,6 +34,12 @@ capistrano_template "config/settings.yml" do
   params          node['alm']['settings']
 end
 
+capistrano_template "db/seeds/_custom_sources.rb" do
+  source          "_custom_sources.rb.erb"
+  application     node['alm']['name']
+  params          node['alm']['sources']
+end
+
 # create required files and folders, and deploy application
 capistrano node['alm']['name'] do
   rails_env       node['alm']['rails_env']

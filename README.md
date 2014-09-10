@@ -1,4 +1,4 @@
-ALM Cookbook
-============
+Lagotto Cookbook
+================
 
-Chef cookbook for installing ALM application. More information [here](https://github.com/articlemetrics/alm).
+Chef cookbook for installing the Lagotto application. More information [here](https://github.com/articlemetrics/lagotto).

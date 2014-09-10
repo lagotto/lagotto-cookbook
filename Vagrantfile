@@ -11,18 +11,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
-  config.vm.hostname = "alm-berkshelf"
+  config.vm.hostname = "lagotto-berkshelf"
 
   # Set the version of chef to install using the vagrant-omnibus plugin
   config.omnibus.chef_version = :latest
 
   # Every Vagrant virtual environment requires a box to build off of.
-  # If this value is a shorthand to a box in Vagrant Cloud then 
+  # If this value is a shorthand to a box in Vagrant Cloud then
   # config.vm.box_url doesn't need to be specified.
   config.vm.box = "chef/ubuntu-14.04"
 
   # The url from where the 'config.vm.box' box will be fetched if it
-  # is not a Vagrant Cloud box and if it doesn't already exist on the 
+  # is not a Vagrant Cloud box and if it doesn't already exist on the
   # user's system.
   # config.vm.box_url = "https://vagrantcloud.com/chef/ubuntu-14.04/version/1/provider/virtualbox.box"
 
@@ -82,7 +82,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     }
 
     chef.run_list = [
-        "recipe[alm::default]"
+        "recipe[lagotto::default]"
     ]
   end
 end

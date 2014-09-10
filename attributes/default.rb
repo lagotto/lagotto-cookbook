@@ -6,11 +6,11 @@ default['ruby']['group'] = 'vagrant'
 default['ruby']['rails_env'] = "development"
 default['ruby']['db'] = { 'username' => 'vagrant', 'password' => SecureRandom.hex(10), 'host' => 'localhost' }
 
-default['alm']['couchdb'] = { 'url' => 'http://localhost:5984/alm' }
+default['lagotto']['couchdb'] = { 'url' => 'http://localhost:5984/lagotto' }
 
 # config/settings.yml
-default['alm']['settings'] = {
-  "useragent"          => "Article-Level Metrics",
+default['lagotto']['settings'] = {
+  "useragent"          => "Lagotto",
   "notification_email" => "admin@example.com",
   "api_key"            => SecureRandom.hex(20),
   "uid"                => "doi",
@@ -22,12 +22,12 @@ default['alm']['settings'] = {
   "cas_url"            => "https://example.org",
   "cas_prefix"         => "/cas",
   "workers"            => 3,
-  "couchdb_url"        => node['alm']['couchdb']['url'],
+  "couchdb_url"        => node['lagotto']['couchdb']['url'],
   "mail"               => { address: "localhost", port: 25, domain: "localhost", enable_starttls_auto: true }
 }
 
 # db/seeds/_custom_sources.rb
-default['alm']['sources'] = {
+default['lagotto']['sources'] = {
   "counter"          => { url: nil },
   "mendeley"         => { client_id: nil, secret: nil },
   "pmc"              => { url: nil, journals: nil, username: nil, password: nil },

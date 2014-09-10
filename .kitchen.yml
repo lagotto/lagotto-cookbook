@@ -18,5 +18,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[alm::default]
+      - recipe[lagotto::default]
     attributes:

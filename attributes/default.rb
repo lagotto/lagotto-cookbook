@@ -2,8 +2,8 @@ require 'securerandom'
 
 default['ruby']['packages'] = %w{ libxml2-dev libxslt-dev libmysqlclient-dev nodejs libpq-dev avahi-daemon libnss-mdns }
 default['ruby']['user'] = 'vagrant'
-default['ruby']['group'] = 'www-data'
-default['ruby']['rails_env'] = "production"
+default['ruby']['group'] = 'vagrant'
+default['ruby']['rails_env'] = "development"
 default['ruby']['db'] = { 'username' => 'vagrant', 'password' => SecureRandom.hex(10), 'host' => 'localhost' }
 
 default['alm']['couchdb'] = { 'url' => 'http://localhost:5984/alm' }

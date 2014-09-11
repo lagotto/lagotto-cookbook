@@ -32,6 +32,7 @@ test:
   workers: 1
   couchdb_url: <%= @params[:couchdb_url] %>_test/
   doi_prefix: <%= @params[:doi_prefix] %>
+  import: member
 
 production:
   <<: *defaults

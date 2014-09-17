@@ -2,7 +2,6 @@
 include_recipe "couchdb"
 include_recipe "memcached"
 include_recipe "postfix"
-include_recipe "phantomjs"
 
 # install mysql and create configuration file and database
 mysql_rails 'lagotto' do

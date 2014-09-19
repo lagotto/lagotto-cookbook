@@ -6,6 +6,8 @@ default['ruby']['group'] = 'vagrant'
 default['ruby']['rails_env'] = "development"
 default['ruby']['db'] = { 'username' => 'vagrant', 'password' => SecureRandom.hex(10), 'host' => 'localhost' }
 
+default['phantomjs']['version'] = "1.9.7"
+
 default['lagotto']['couchdb'] = { 'url' => 'http://localhost:5984/lagotto' }
 
 # config/settings.yml

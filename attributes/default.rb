@@ -7,6 +7,7 @@ default['ruby']['rails_env'] = "development"
 default['ruby']['db'] = { 'username' => 'vagrant', 'password' => SecureRandom.hex(10), 'host' => 'localhost' }
 
 default['phantomjs']['version'] = "1.9.7"
+default['phantomjs']['base_url'] = "https://bitbucket.org/ariya/phantomjs/downloads"
 
 default['lagotto']['couchdb'] = { 'url' => 'http://localhost:5984/lagotto' }
 

@@ -17,7 +17,6 @@ default['lagotto']['settings'] = {
   "notification_email" => "admin@example.com",
   "api_key"            => SecureRandom.hex(20),
   "uid"                => "doi",
-  "doi_prefix"         => nil,
   "import"             => nil,
   "rest_auth_site_key" => SecureRandom.hex(34),
   "secret_token"       => SecureRandom.hex(34),

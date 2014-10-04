@@ -13,7 +13,6 @@ defaults: &defaults
   cas_service_validate_url: <%= @params[:cas_prefix] %>/serviceValidate
   workers: <%= @params[:workers] %>
   couchdb_url: <%= @params[:couchdb_url] %>/
-  doi_prefix: <%= @params[:doi_prefix] %>
   import: <%= @params[:import] %>
   uid: <%= @params[:uid] %>
   mail:
@@ -31,7 +30,6 @@ test:
   cas_url: https://example.org
   workers: 1
   couchdb_url: <%= @params[:couchdb_url] %>_test/
-  doi_prefix: <%= @params[:doi_prefix] %>
   import: member
 
 production:

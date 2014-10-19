@@ -7,7 +7,7 @@ include_recipe "phantomjs"
 
 # install mysql and create configuration file and database
 mysql_rails 'lagotto' do
-  action          [:config, :setup]
+  action          :create
 end
 
 # create CouchDB database
@@ -22,16 +22,10 @@ passenger_nginx 'lagotto' do
 end
 
 # create configuration files
-capistrano_template 'config/settings.yml' do
-  source          'settings.yml.erb'
+capistrano_template 'config/application.yml' do
+  source          'application.yml.erb'
   application     'lagotto'
-  params          node['lagotto']['settings']
-end
-
-capistrano_template 'db/seeds/_custom_sources.rb' do
-  source          '_custom_sources.rb.erb'
-  application     'lagotto'
-  params          node['lagotto']['sources']
+  params          node['lagotto']['application']
 end
 
 # create required files and folders, and deploy application

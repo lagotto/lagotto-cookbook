@@ -1,0 +1,57 @@
+# Configuration settings for this application
+# This file should never be under version control
+
+# config/database.yml
+DB_USERNAME: <%= @params[:db_username] %>
+DB_PASSWORD: <%= @params[:db_password] %>
+DB_HOST: <%= @params[:db_host] %>
+
+# config/settings.yml
+
+# name of server
+HOSTNAME: <%= @params[:hostname] %>
+
+# all instances of server used behind load balancer
+# comma-delimited string of server names
+# defaults to hostname if left empty
+WEB_SERVERS: <%= @params[:web_servers] %>
+
+# load balancer
+# defaults to hostname if left empty
+PUBLIC_SERVER: <%= @params[:public_server] %>
+
+# name used on navigation bar and in email subject line
+# defaults to "ALM" if left empty
+SITENAME: <%= @params[:sitename] %>
+
+# couch_db server
+COUCHDB_HOST: <%= @params[:couchdb_host] %>
+
+# email address for sending emails
+ADMIN_EMAIL: <%= @params[:admin_email] %>
+
+# number of background workers
+WORKERS: <%= @params[:workers] %>
+
+# automatic import via CrossRef API.
+# Use 'all', 'member', 'sample', 'member_sample', or leave empty
+IMPORT: <%= @params[:import] %>
+
+# persistent identifier used, defaults to doi if left empty
+UID: <%= @params[:uid] %>
+
+# keys
+API_KEY: <%= @params[:api_key] %>
+AUTH_SITE_KEY: <%= @params[:auth_site_key] %>
+SECRET_TOKEN: <%= @params[:secret_token] %>
+
+# third-party login
+# enabling persona overrides cas settings
+PERSONA: <%= @params[:persona] %>
+CAS_URL: <%= @params[:cas_url] %>
+CAS_PREFIX: <%= @params[:cas_prefix] %>
+
+# mail settings
+MAIL_ADDRESS: <%= @params[:mail_address] %>
+MAIL_PORT: <%= @params[:mail_port] %>
+MAIL_DOMAIN: <%= @params[:mail_domain] %>

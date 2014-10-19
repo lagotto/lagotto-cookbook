@@ -11,35 +11,29 @@ default['phantomjs']['base_url'] = "https://bitbucket.org/ariya/phantomjs/downlo
 
 default['lagotto']['couchdb'] = { 'url' => 'http://localhost:5984/lagotto' }
 
+default['mail'] = { "address": "localhost", "port": 25, "domain": "localhost" }
+
 # config/settings.yml
-default['lagotto']['settings'] = {
-  "useragent"          => "Lagotto",
-  "notification_email" => "admin@example.com",
-  "api_key"            => SecureRandom.hex(20),
-  "uid"                => "doi",
+default['lagotto']['application'] = {
+  "db_username"        => node['ruby']['db']['username'],
+  "db_password"        => node['ruby']['db']['password'],
+  "db_host"            => node['ruby']['db']['host']
+  "hostname"           => "lagotto.local",
+  "web_servers"        => nil.
+  "public_server"      => nil,
+  "sitename"           => nil,
+  "couchdb_host"       => "localhost",
+  "admin_email"        => "admin@example.com",
+  "workers"            => 3,
   "import"             => nil,
-  "rest_auth_site_key" => SecureRandom.hex(34),
+  "uid"                => "doi",
+  "api_key"            => SecureRandom.hex(20),
+  "auth_site_key"      => SecureRandom.hex(34),
   "secret_token"       => SecureRandom.hex(34),
   "persona"            => true,
   "cas_url"            => "https://example.org",
   "cas_prefix"         => "/cas",
-  "workers"            => 3,
-  "couchdb_url"        => node['lagotto']['couchdb']['url'],
-  "mail"               => { address: "localhost", port: 25, domain: "localhost", enable_starttls_auto: true }
+  "mail_address"       => node['mail']['address'],
+  "mail_port"          => node['mail']['port'],
+  "mail_domain"        => node['mail']['domain']
 }
-
-# db/seeds/_custom_sources.rb
-default['lagotto']['sources'] = {
-  "counter"          => { url: nil },
-  "mendeley"         => { client_id: nil, secret: nil },
-  "pmc"              => { url: nil, journals: nil, username: nil, password: nil },
-  "f1000"            => {},
-  "facebook"         => { access_token: nil },
-  "twitter_search"   => { access_token: nil },
-  "crossref"         => { username: nil, password: nil },
-  "researchblogging" => { username: nil, password: nil },
-  "scopus"           => { api_key: nil, insttoken: nil },
-  "copernicus"       => {},
-  "admin"            => { username: "articlemetrics", name: "Admin", email: "admin@example.com", password: nil }
-}
-

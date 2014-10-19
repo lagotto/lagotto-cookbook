@@ -11,7 +11,7 @@ default['phantomjs']['base_url'] = "https://bitbucket.org/ariya/phantomjs/downlo
 
 default['lagotto']['couchdb'] = { 'url' => 'http://localhost:5984/lagotto' }
 
-default['mail'] = { "address": "localhost", "port": 25, "domain": "localhost" }
+default['mail'] = { "address" => "localhost", "port" => 25, "domain" => "localhost" }
 
 # config/settings.yml
 default['lagotto']['application'] = {

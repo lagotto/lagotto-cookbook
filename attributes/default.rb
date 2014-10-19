@@ -17,7 +17,7 @@ default['mail'] = { "address" => "localhost", "port" => 25, "domain" => "localho
 default['lagotto']['application'] = {
   "db_username"        => node['ruby']['db']['username'],
   "db_password"        => node['ruby']['db']['password'],
-  "db_host"            => node['ruby']['db']['host']
+  "db_host"            => node['ruby']['db']['host'],
   "hostname"           => "lagotto.local",
   "web_servers"        => nil.
   "public_server"      => nil,

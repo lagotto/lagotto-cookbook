@@ -1,4 +1,5 @@
 # install and configure dependencies
+include_recipe "apt"
 include_recipe "couchdb"
 include_recipe "memcached"
 include_recipe "postfix"

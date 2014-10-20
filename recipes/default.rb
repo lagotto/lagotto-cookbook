@@ -5,6 +5,12 @@ include_recipe "memcached"
 include_recipe "postfix"
 include_recipe "phantomjs"
 
+# load ENV variables from configuration file
+# copy configuration file to shared folder
+capistrano_config 'lagotto' do
+  action          [:load, :copy]
+end
+
 # install mysql and create configuration file and database
 mysql_rails 'lagotto' do
   action          :create
@@ -19,13 +25,6 @@ end
 # install nginx and create configuration file and application root
 passenger_nginx 'lagotto' do
   action          :config
-end
-
-# create configuration files
-capistrano_template 'config/application.yml' do
-  source          'application.yml.erb'
-  application     'lagotto'
-  params          node['lagotto']['application']
 end
 
 # create required files and folders, and deploy application

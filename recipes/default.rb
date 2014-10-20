@@ -5,9 +5,9 @@ include_recipe "memcached"
 include_recipe "postfix"
 include_recipe "phantomjs"
 
-# load ENV variables from configuration file
+# load .env configuration file with ENV variables
 # copy configuration file to shared folder
-capistrano_config 'lagotto' do
+capistrano_env 'lagotto' do
   action          [:load, :copy]
 end
 

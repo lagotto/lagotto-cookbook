@@ -18,7 +18,7 @@ end
 
 # create CouchDB database
 bash "create CouchDB database" do
-  code            "curl -X PUT #{node['lagotto']['couchdb_url']}"
+  code            "curl -X PUT http://#{ENV['COUCHDB_HOST']}:5984/lagotto"
   returns         [0, 127]
 end
 

@@ -8,8 +8,8 @@ include_recipe "phantomjs"
 # load .env configuration file with ENV variables
 # copy configuration file to shared folder
 dotenv 'lagotto' do
-  action          [:load, :copy]
-end
+  action          :nothing
+end.run_action(:load)
 
 # install mysql and create configuration file and database
 mysql_rails 'lagotto' do

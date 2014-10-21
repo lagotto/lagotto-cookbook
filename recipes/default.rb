@@ -16,7 +16,7 @@ mysql_rails 'lagotto' do
   username        ENV['DB_USERNAME']
   password        ENV['DB_PASSWORD']
   host            ENV['DB_HOST']
-  server_root_password ENV['DB_SERVER_ROOT_PASSWORD']
+  root_password   ENV['DB_ROOT_PASSWORD']
   action          :create
 end
 

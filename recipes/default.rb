@@ -11,8 +11,6 @@ dotenv 'lagotto' do
   action          [:load, :copy]
 end
 
-puts ENV['COUCHDB_HOST']
-
 # install mysql and create configuration file and database
 mysql_rails 'lagotto' do
   username        ENV['DB_USERNAME']

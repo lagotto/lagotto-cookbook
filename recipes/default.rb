@@ -12,7 +12,7 @@ dotenv 'lagotto' do
 end.run_action(:load)
 
 # install mysql and create configuration file and database
-mysql_rails 'lagotto' do
+mysql_rails ENV['DB_NAME'] do
   username        ENV['DB_USERNAME']
   password        ENV['DB_PASSWORD']
   host            ENV['DB_HOST']

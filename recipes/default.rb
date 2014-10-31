@@ -8,7 +8,7 @@ include_recipe "phantomjs"
 # load .env configuration file with ENV variables
 # copy configuration file to shared folder
 dotenv 'lagotto' do
-  dotenv         ENV['DOTENV']
+  dotenv         node["dotenv"]
   action          :nothing
 end.run_action(:load)
 

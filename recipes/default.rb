@@ -7,8 +7,8 @@ include_recipe "phantomjs"
 
 # load .env configuration file with ENV variables
 # copy configuration file to shared folder
-dotenv 'lagotto' do
-  dotenv         node["dotenv"]
+dotenv ENV['APPLICATION'] do
+  dotenv          node["dotenv"]
   action          :nothing
 end.run_action(:load)
 
@@ -28,7 +28,7 @@ bash "create CouchDB database" do
 end
 
 # install nginx and create configuration file and application root
-passenger_nginx 'lagotto' do
+passenger_nginx ENV['APPLICATION'] do
   user            ENV['DEPLOY_USER']
   group           ENV['DEPLOY_GROUP']
   rails_env       ENV['RAILS_ENV']
@@ -36,7 +36,7 @@ passenger_nginx 'lagotto' do
 end
 
 # create required files and folders, and deploy application
-capistrano 'lagotto' do
+capistrano ENV['APPLICATION'] do
   user            ENV['DEPLOY_USER']
   group           ENV['DEPLOY_GROUP']
   rails_env       ENV['RAILS_ENV']

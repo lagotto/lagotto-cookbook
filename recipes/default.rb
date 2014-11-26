@@ -7,7 +7,7 @@ include_recipe "phantomjs"
 
 # load .env configuration file with ENV variables
 # copy configuration file to shared folder
-dotenv ENV['APPLICATION'] do
+dotenv node["application"] do
   dotenv          node["dotenv"]
   action          :nothing
 end.run_action(:load)

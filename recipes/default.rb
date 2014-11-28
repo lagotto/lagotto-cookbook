@@ -4,7 +4,6 @@ include_recipe "couchdb"
 include_recipe "memcached"
 include_recipe "postfix"
 include_recipe "ember_cli"
-include_recipe "phantomjs"
 
 # load .env configuration file with ENV variables
 # copy configuration file to shared folder

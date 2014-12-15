@@ -4,4 +4,4 @@ default['nodejs']['npm_packages'] = [{ "name" => "bower" },
                                      { "name" => "phantomjs" }]
 default["dotenv"] = "default"
 default["application"] = "lagotto"
-default['ruby']['api_only'] = true
+default['ruby']['api_only'] = false

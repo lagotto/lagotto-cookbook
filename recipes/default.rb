@@ -1,16 +1,16 @@
-# install and configure dependencies
-include_recipe "apt"
-include_recipe "couchdb"
-include_recipe "memcached"
-include_recipe "postfix"
-include_recipe "nodejs"
-
 # load .env configuration file with ENV variables
 # copy configuration file to shared folder
 dotenv node["application"] do
   dotenv          node["dotenv"]
   action          :nothing
 end.run_action(:load)
+
+# install and configure dependencies
+include_recipe "apt"
+include_recipe "couchdb"
+include_recipe "memcached"
+include_recipe "postfix"
+include_recipe "nodejs"
 
 # install mysql and create configuration file and database
 mysql_rails ENV['DB_NAME'] do

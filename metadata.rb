@@ -19,7 +19,7 @@ depends           "nodejs"
 # our own cookbooks
 depends           "ruby", "~> 0.6.0"
 depends           "dotenv", "~> 0.2.0"
-depends           "passenger_nginx", "~> 0.4.0"
+depends           "passenger_nginx", "~> 0.5.0"
 depends           "mysql_rails", "~> 0.3.0"
 depends           "capistrano", "~> 0.8.0"
 

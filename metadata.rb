@@ -4,13 +4,13 @@ maintainer_email  "mfenner@plos.org"
 license           "Apache 2.0"
 description       "Install and configure the Lagotto application"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           "4.4.3"
+version           "4.4.4"
 
 # opscode cookbooks
 depends           "apt"
 depends           "memcached"
 depends           "postfix"
-depends           "mysql", '~> 5.6.1'
+depends           "mysql", "~> 6.0"
 depends           "database"
 depends           "couchdb"
 depends           "redisio"

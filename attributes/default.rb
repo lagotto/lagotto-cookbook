@@ -7,7 +7,7 @@ default['ruby']['api_only'] = false
 default['couch_db']['config']['httpd']['bind_address'] = "0.0.0.0" if ENV['RAILS_ENV'] != "production"
 default['nodejs']['install_method'] = "binary"
 default['nodejs']['version'] = "0.12.1"
-# default['nodejs']['binary']['checksum']['linux_x64'] = "159e5485d0fb5c913201baae49f68fd428a7e3b08262e9bf5003c1b399705ca8"
+default['nodejs']['binary']['checksum']['linux_x64'] = "305bf2983c65edea6dd2c9f3669b956251af03523d31cf0a0471504fd5920aac"
 default['nodejs']['npm']['version'] = "2.7.5"
 default['nodejs']['npm_packages'] = [{ "name" => "phantomjs" },
                                      { "name" => "istanbul"},

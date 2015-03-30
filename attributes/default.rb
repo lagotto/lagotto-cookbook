@@ -12,6 +12,3 @@ default['nodejs']['npm']['version'] = "2.7.5"
 default['nodejs']['npm_packages'] = [{ "name" => "phantomjs" },
                                      { "name" => "istanbul"},
                                      { "name" => "codeclimate-test-reporter" }]
-
-# bower needs to be installed locally because of permissions
-default['npm_packages'] = %w{ bower ember-cli ember-cli-rails-addon }

@@ -46,6 +46,11 @@ capistrano ENV['APPLICATION'] do
 end
 
 # monitor httpd service
+consul_service_watch_def 'nginx' do
+  passingonly true
+  handler "chef-client"
+end
+
 consul_service_def 'nginx' do
   port 80
   tags ['http']

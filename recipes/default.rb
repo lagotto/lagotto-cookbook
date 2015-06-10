@@ -13,6 +13,7 @@ include_recipe "redisio::enable"
 include_recipe "memcached"
 include_recipe "postfix"
 include_recipe "nodejs"
+include_recipe "consul"
 
 # install mysql and create configuration file and database
 mysql_rails ENV['DB_NAME'] do
@@ -58,5 +59,4 @@ consul_service_def 'nginx' do
     interval: '10s',
     http: "#{ENV['HOSTNAME']}:80"
   )
-  notifies :reload, 'service[consul]'
 end

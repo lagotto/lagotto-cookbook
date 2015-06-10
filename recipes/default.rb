@@ -44,3 +44,14 @@ capistrano ENV['APPLICATION'] do
   rails_env       ENV['RAILS_ENV']
   action          [:config, :bundle_install, :npm_install, :precompile_assets, :migrate, :restart]
 end
+
+# monitor httpd service
+consul_service_def 'nginx' do
+  port 80
+  tags ['http']
+  check(
+    interval: '10s',
+    http: "#{ENV['HOSTNAME']}:80"
+  )
+  notifies :reload, 'service[consul]'
+end

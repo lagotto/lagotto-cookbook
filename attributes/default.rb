@@ -12,3 +12,5 @@ default['nodejs']['npm']['version'] = "2.7.5"
 default['nodejs']['npm_packages'] = [{ "name" => "phantomjs" },
                                      { "name" => "istanbul"},
                                      { "name" => "codeclimate-test-reporter" }]
+default['consul']['servers'] = ENV['CONSUL_SERVERS'] || [ENV['HOSTNAME']]
+default['consul']['service_mode'] = 'cluster'

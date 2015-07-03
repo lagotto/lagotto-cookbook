@@ -1,4 +1,4 @@
-default['ruby']['packages'] = %w{ curl git libmysqlclient-dev python-software-properties software-properties-common }
+default['ruby']['packages'] = %w{ curl git libmysqlclient-dev python-software-properties software-properties-common nodejs }
 default['ruby']['packages'] += %w{ avahi-daemon libnss-mdns } if ENV['RAILS_ENV'] != "production"
 default["dotenv"] = "default"
 default["application"] = "lagotto"

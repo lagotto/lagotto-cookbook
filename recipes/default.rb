@@ -12,7 +12,6 @@ include_recipe "redisio"
 include_recipe "redisio::enable"
 include_recipe "memcached"
 include_recipe "postfix"
-include_recipe "nodejs"
 
 # install mysql and create configuration file and database
 mysql_rails ENV['DB_NAME'] do

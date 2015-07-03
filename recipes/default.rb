@@ -13,7 +13,6 @@ include_recipe "redisio::enable"
 include_recipe "memcached"
 include_recipe "postfix"
 include_recipe "nodejs"
-include_recipe "consul"
 
 # install mysql and create configuration file and database
 mysql_rails ENV['DB_NAME'] do
@@ -22,12 +21,6 @@ mysql_rails ENV['DB_NAME'] do
   host            ENV['DB_HOST']
   root_password   ENV['DB_ROOT_PASSWORD']
   action          :create
-end
-
-# create CouchDB database
-bash "create CouchDB database" do
-  code            "curl -X PUT #{ENV['COUCHDB_URL']}"
-  returns         [0, 127]
 end
 
 # install nginx and create configuration file and application root
@@ -43,20 +36,5 @@ capistrano ENV['APPLICATION'] do
   user            ENV['DEPLOY_USER']
   group           ENV['DEPLOY_GROUP']
   rails_env       ENV['RAILS_ENV']
-  action          [:config, :bundle_install, :npm_install, :precompile_assets, :migrate, :restart]
-end
-
-# monitor httpd service
-consul_service_watch_def 'nginx' do
-  passingonly true
-  handler "chef-client"
-end
-
-consul_service_def 'nginx' do
-  port 80
-  tags ['http']
-  check(
-    interval: '10s',
-    http: "#{ENV['HOSTNAME']}:80"
-  )
+  action          [:config, :bundle_install, :npm_install, :consul_install, :precompile_assets, :migrate, :restart]
 end

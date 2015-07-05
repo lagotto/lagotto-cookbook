@@ -5,6 +5,7 @@ default["application"] = "lagotto"
 default['ruby']['merge_slashes_off'] = true
 default['ruby']['api_only'] = false
 default['couch_db']['config']['httpd']['bind_address'] = "0.0.0.0" if ENV['RAILS_ENV'] != "production"
+default['nodejs']['repo'] = 'https://deb.nodesource.com/node_0.12'
 default['nodejs']['npm_packages'] = [{ "name" => "phantomjs" },
                                      { "name" => "istanbul"},
                                      { "name" => "codeclimate-test-reporter" }]

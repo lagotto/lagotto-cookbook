@@ -7,7 +7,6 @@ end.run_action(:load)
 
 # install and configure dependencies
 include_recipe "apt"
-include_recipe "couchdb"
 include_recipe "redisio"
 include_recipe "redisio::enable"
 include_recipe "memcached"

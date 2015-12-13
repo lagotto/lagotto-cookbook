@@ -1,27 +1,23 @@
 name              "lagotto"
 maintainer        "Martin Fenner"
-maintainer_email  "mfenner@plos.org"
+maintainer_email  "mfenner@datacite.org"
 license           "Apache 2.0"
 description       "Install and configure the Lagotto application"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           "4.8.2"
+version           "5.0.0"
 
 # opscode cookbooks
 depends           "apt"
 depends           "memcached"
 depends           "postfix"
-depends           "mysql"
-depends           "database", "~> 2.3.1"
-depends           "redisio"
 depends           "nodejs"
 depends           "consul"
 
 # our own cookbooks
 depends           "ruby", "~> 0.7.0"
-depends           "dotenv", "~> 0.2.0"
-depends           "passenger_nginx", "~> 0.5.0"
-depends           "mysql_rails", "~> 0.3.0"
-depends           "capistrano", "~> 0.10.0"
+depends           "dotenv", "~> 1.0.0"
+depends           "passenger_nginx", "~> 1.0.0"
+depends           "capistrano", "~> 1.0.0"
 
 %w{ ubuntu }.each do |platform|
   supports platform

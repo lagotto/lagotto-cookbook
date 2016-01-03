@@ -4,7 +4,7 @@ maintainer_email  "mfenner@datacite.org"
 license           "Apache 2.0"
 description       "Install and configure the Lagotto application"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           "5.0.4"
+version           "5.0.5"
 
 # opscode cookbooks
 depends           "apt"
@@ -12,6 +12,7 @@ depends           "memcached"
 depends           "postfix"
 depends           "nodejs"
 depends           "consul"
+depends           "rsyslog"
 
 # our own cookbooks
 depends           "ruby", "~> 0.7.0"
